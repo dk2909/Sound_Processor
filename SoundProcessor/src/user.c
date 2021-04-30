@@ -43,7 +43,7 @@
 #define SOUNDRMSLENGTH 1024 // number of samples to collect before calculating RMS (may overflow if greater than 4104)
 
 // runs each thread 2 ms
-uint32_t Count0;   // number of times Task0 loops
+//uint32_t Count0;   // number of times Task0 loops
 uint32_t Count1;   // number of times Task1 loops
 uint32_t Count2;   // number of times Task2 loops
 uint32_t Count3;   // number of times Task2 loops
@@ -99,7 +99,7 @@ void Task0_Init(void){
 // Capture and store raw sound data
 // periodic even thread
 void Task0(void){ // periodic even thread
-  Count0 = 0;
+  //Count0 = 0;
 	//////////
 	static int32_t soundSum = 0;
 	static int time = 0; // units of microphone sampling rate

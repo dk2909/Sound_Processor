@@ -63,4 +63,54 @@ int OS_AddPeriodicEventThreads(void(*thread)(void), uint32_t period);
 // Outputs: none (does not return)
 void OS_Launch(uint32_t theTimeSlice);
 
+// ******** OS_InitSemaphore ************
+// Initialize counting semaphore
+// Inputs:  pointer to a semaphore
+//          initial value of semaphore
+// Outputs: none
+void OS_InitSemaphore(int32_t *semaPt, int32_t value);
+
+// ******** OS_Wait ************
+// Decrement semaphore
+// Lab2 spinlock (does not suspend while spinning)
+// Lab3 block if less than zero
+// Inputs:  pointer to a counting semaphore
+// Outputs: none
+void OS_Wait(int32_t *semaPt);
+
+// ******** OS_Signal ************
+// Increment semaphore
+// Lab2 spinlock
+// Lab3 wakeup blocked thread if appropriate
+// Inputs:  pointer to a counting semaphore
+// Outputs: none
+void OS_Signal(int32_t *semaPt);
+
+// ******** OS_MailBox_Init ************
+// Initialize communication channel
+// Producer is an event thread, consumer is a main thread
+// Inputs:  none
+// Outputs: none
+void OS_MailBox_Init(void);
+
+// ******** OS_MailBox_Send ************
+// Enter data into the MailBox, do not spin/block if full
+// Use semaphore to synchronize with OS_MailBox_Recv
+// Inputs:  data to be sent
+// Outputs: none
+// Errors: data lost if MailBox already has data
+void OS_MailBox_Send(uint32_t data);
+
+// ******** OS_MailBox_Recv ************
+// retreive mail from the MailBox
+// Use semaphore to synchronize with OS_MailBox_Send
+// Lab 2 spin on semaphore if mailbox empty
+// Lab 3 block on semaphore if mailbox empty
+// Inputs:  none
+// Outputs: data retreived
+// Errors:  none
+uint32_t OS_MailBox_Recv(void);
+								 
+
+
 #endif
