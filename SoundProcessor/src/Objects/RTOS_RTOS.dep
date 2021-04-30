@@ -4,9 +4,9 @@ F (..\inc\BSP.c)(0x57BA5EE4)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=int
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5EC82CCC)
 I (..\inc\BSP.h)(0x57BA5EE4)
 I (..\inc\../inc/tm4c123gh6pm.h)(0x5388D0EA)
-F (.\os.c)(0x608B3668)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I ../inc-I.\RTE\_RTOS-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\PrivateInclude-IC:\Users\dking\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="531" -D_RTE_ -DTM4C123GH6PM -D_RTE_-o .\objects\os.o --omf_browse .\objects\os.crf --depend .\objects\os.d)
+F (.\os.c)(0x608B6A59)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I ../inc-I.\RTE\_RTOS-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\PrivateInclude-IC:\Users\dking\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="531" -D_RTE_ -DTM4C123GH6PM -D_RTE_-o .\objects\os.o --omf_browse .\objects\os.crf --depend .\objects\os.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5EC82CCC)
-I (os.h)(0x608B299A)
+I (os.h)(0x608B6A5C)
 I (../inc/CortexM.h)(0x56B75576)
 I (../inc/BSP.h)(0x57BA5EE4)
 I (C:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Include\arm_math.h)(0x5E8F87F2)
@@ -16,14 +16,14 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC82CD4)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5EC82CD4)
 I (C:\Keil_v5\ARM\ARMCC\include\float.h)(0x5EC82CCC)
 I (C:\Keil_v5\ARM\ARMCC\include\limits.h)(0x5EC82CC2)
-F (.\osasm.s)(0x56D5E4C4)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_RTOS-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\PrivateInclude-IC:\Users\dking\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123--pd "__UVISION_VERSION SETA 531" --pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1" --pd "_RTE_ SETA 1"--list .\listings\osasm.lst --xref -o .\objects\osasm.o --depend .\objects\osasm.d)
+F (.\osasm.s)(0x608B6686)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_RTOS-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\PrivateInclude-IC:\Users\dking\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123--pd "__UVISION_VERSION SETA 531" --pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1" --pd "_RTE_ SETA 1"--list .\listings\osasm.lst --xref -o .\objects\osasm.o --depend .\objects\osasm.d)
 F (..\inc\Profile.c)(0x57589806)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I ../inc-I.\RTE\_RTOS-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\PrivateInclude-IC:\Users\dking\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="531" -D_RTE_ -DTM4C123GH6PM -D_RTE_-o .\objects\profile.o --omf_browse .\objects\profile.crf --depend .\objects\profile.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5EC82CCC)
 I (..\inc\../inc/tm4c123gh6pm.h)(0x5388D0EA)
-F (.\user.c)(0x608B3668)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I ../inc-I.\RTE\_RTOS-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\PrivateInclude-IC:\Users\dking\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="531" -D_RTE_ -DTM4C123GH6PM -D_RTE_-o .\objects\user.o --omf_browse .\objects\user.crf --depend .\objects\user.d)
+F (.\user.c)(0x608B6CD6)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I ../inc-I.\RTE\_RTOS-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Include-IC:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\PrivateInclude-IC:\Users\dking\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="531" -D_RTE_ -DTM4C123GH6PM -D_RTE_-o .\objects\user.o --omf_browse .\objects\user.crf --depend .\objects\user.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5EC82CCC)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5EC82CCC)
-I (os.h)(0x608B299A)
+I (os.h)(0x608B6A5C)
 I (../inc/BSP.h)(0x57BA5EE4)
 I (../inc/profile.h)(0x57589674)
 I (C:\Keil_v5\ARM\ARMCC\include\time.h)(0x5EC82CC2)

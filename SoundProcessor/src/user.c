@@ -40,6 +40,7 @@
 #define MAGNUM 512   // number of magnitude values
 #define PLOTMAX 500
 #define PLOTMIN 0
+#define SOUNDRMSLENGTH 1024 // number of samples to collect before calculating RMS (may overflow if greater than 4104)
 
 // runs each thread 2 ms
 uint32_t Count0;   // number of times Task0 loops
@@ -50,10 +51,12 @@ uint32_t Count3;   // number of times Task2 loops
 //---------------- Global variables shared between tasks ----------------
 uint32_t Time;              // elasped time in ?100? ms units
 uint32_t mag[MAGNUM];	// array to hold all calculated magnitude values
-
+int16_t SoundArray[SOUNDRMSLENGTH];
+uint16_t SoundData;         // raw data sampled from the microphone
+int ReDrawAxes = 0;         // non-zero means redraw axes on next display task
 int32_t NewData;  // true when new numbers to display on top of LCD
 int32_t LCDmutex ; // exclusive access to LCD
-int ReDrawAxes = 0;         // non-zero means redraw axes on next display task
+
 
 //color constants
 #define BGCOLOR     LCD_BLACK
@@ -93,12 +96,25 @@ void Task0_Init(void){
   BSP_Microphone_Init();
 }
 
-void Task0(void){
+// Capture and store raw sound data
+// periodic even thread
+void Task0(void){ // periodic even thread
   Count0 = 0;
-  while(1){
-    Count0++;
-    Profile_Toggle0();    // toggle bit
-  }
+	//////////
+	static int32_t soundSum = 0;
+	static int time = 0; // units of microphone sampling rate
+	BSP_Microphone_Input(&SoundData);
+	soundSum = soundSum + (int32_t)SoundData;
+  SoundArray[time] = SoundData;
+	time = time + 1;
+	if (time == SOUNDRMSLENGTH){
+		time = 0;
+	}
+	/*
+	while(1){
+		Count0++;
+		Profile_Toggle0();    // toggle bit
+	}*/
 }
 void Task1(void){
   Count1 = 0;
@@ -166,8 +182,8 @@ int main(void){
 	//OS_InitSemaphore(&NewData, 0);  // 0 means no data
   OS_InitSemaphore(&LCDmutex, 1); // 1 means free
 	//OS_MailBox_Init();              // initialize mailbox used to send data
-	
-  OS_AddThreads(&Task0, &Task1, &Task2, &Task3);
+	OS_AddPeriodicEventThreads(&Task0, 1);
+  OS_AddThreads(&Task1, &Task2, &Task3);
   OS_Launch(BSP_Clock_GetFreq()/THREADFREQ); // doesn't return, interrupts enabled in here
   return 0;             // this never executes
 }

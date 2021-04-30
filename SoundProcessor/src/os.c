@@ -33,7 +33,7 @@
 // function definitions in osasm.s
 void StartOS(void);
 
-#define NUMTHREADS  4        // maximum number of threads
+#define NUMTHREADS  3		      // maximum number of threads
 #define STACKSIZE   100      // number of 32-bit words in stack
 struct tcb{
   int32_t *sp;       // pointer to stack (valid for threads not running
@@ -49,6 +49,11 @@ uint32_t Mail; // shared data
 int32_t Send; // that's used as a semaphore!
 int32_t Ack; // that's used as a semaphore!
 uint32_t Lost;
+// declare global variables for periodic tasks
+void(*EventThread)(void);
+uint32_t wait;
+uint32_t Counter;
+
 
 // ******** OS_Init ************
 // initialize operating system, disable interrupts until OS_Launch
@@ -58,6 +63,7 @@ uint32_t Lost;
 void OS_Init(void){
   DisableInterrupts();
   BSP_Clock_InitFastest();// set processor clock to fastest speed
+	wait = 1;
 }
 
 void SetInitialStack(int i){
@@ -85,14 +91,12 @@ void SetInitialStack(int i){
 // Outputs: 1 if successful, 0 if this thread can not be added
 int OS_AddThreads(void(*task0)(void),
                  void(*task1)(void),
-                 void(*task2)(void),
-								 void(*task3)(void)){ 
+								 void(*task2)(void)){ 
 	int32_t status;
   status = StartCritical();
   tcbs[0].next = &tcbs[1]; // 0 points to 1
   tcbs[1].next = &tcbs[2]; // 1 points to 2
-  tcbs[2].next = &tcbs[3]; // 2 points to 3
-	tcbs[3].next = &tcbs[0]; // 3 points to 4								 
+  tcbs[2].next = &tcbs[0]; // 2 points to 0						 
 									 
   SetInitialStack(0); 
 	Stacks[0][STACKSIZE-2] = (int32_t)(task0); // PC
@@ -101,15 +105,33 @@ int OS_AddThreads(void(*task0)(void),
 	Stacks[1][STACKSIZE-2] = (int32_t)(task1); // PC
 									 
   SetInitialStack(2); 
-	Stacks[2][STACKSIZE-2] = (int32_t)(task2); // PC
-									 
-	SetInitialStack(3); 
-	Stacks[3][STACKSIZE-2] = (int32_t)(task3); // PC
-									 
+	Stacks[2][STACKSIZE-2] = (int32_t)(task2); // PC			 
 									 
   RunPt = &tcbs[0];       // thread 0 will run first
   EndCritical(status);
   return 1;               // successful
+}
+								 
+int OS_AddPeriodicEventThreads(void(*thread)(void), uint32_t period){ // from previous lab assignments
+	EventThread = *thread;
+	wait = period;
+
+  return 1;
+}
+
+//******** SCHEDULER ********\\
+// Round Robin Scheduler, runs every ms
+void Scheduler(void){ // Program 3.12 from book
+  // run any periodic event threads if needed
+  // implement round robin scheduler, update RunPt
+	if ((++Counter) == wait){
+			EventThread();
+			Counter = 0; // reset counter
+	}
+	// Round Robin scheduler
+	RunPt = RunPt->next;
+	
+	return;
 }
 
 //******** OS_Launch ***************

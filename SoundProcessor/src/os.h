@@ -42,10 +42,19 @@ void OS_Init(void);
 // Outputs: 1 if successful, 0 if this thread can not be added
 int OS_AddThreads(void(*task0)(void),
                  void(*task1)(void),
-                 void(*task2)(void),
-								 void(*task3)(void));
+                 void(*task2)(void));
 
-
+//******** OS_AddPeriodicEventThreads ***************
+// Add two background periodic event threads
+// Typically this function receives the highest priority
+// Inputs: pointers to a void/void event thread function2
+//         periods given in units of OS_Launch (Lab 2 this will be msec)
+// Outputs: 1 if successful, 0 if this thread cannot be added
+// It is assumed that the event threads will run to completion and return
+// It is assumed the time to run these event threads is short compared to 1 msec
+// These threads cannot spin, block, loop, sleep, or kill
+// These threads can call OS_Signal
+int OS_AddPeriodicEventThreads(void(*thread)(void), uint32_t period);
 
 //******** OS_Launch ***************
 // start the scheduler, enable interrupts
