@@ -29,6 +29,7 @@
 #include "CortexM.h"
 #include "BSP.h"
 #include "arm_math.h"
+#include "arm_common_tables.h"
 
 // function definitions in osasm.s
 void StartOS(void);
@@ -202,6 +203,21 @@ uint32_t OS_MailBox_Recv(void){
 }
 
 //******** FFT ********\\
+// initialize transform function with only one fiddle factor table
+
+arm_status rfft_fast_init_1024_f32(arm_rfft_fast_instance_f32 * S){
+  arm_cfft_instance_f32 * Sint;
+	Sint = &(S->Sint);
+	Sint->fftLen = 512u;
+	S->fftLenRFFT = Sint->fftLen;
+	Sint->bitRevLength = ARMBITREVINDEXTABLE_512_TABLE_LENGTH;
+	Sint->pBitRevTable = (uint16_t*)armBitRevIndexTable512;
+	Sint->pTwiddle = (float32_t*)twiddleCoef_512;
+	S->pTwiddleRFFT = (float32_t*)twiddleCoef_rfft_1024;
+	
+  return ARM_MATH_SUCCESS;
+}
+
 
 /*
 #define PF2   (*((volatile uint32_t *)0x40025010))

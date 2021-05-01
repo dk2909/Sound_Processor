@@ -2,6 +2,12 @@
 .\objects\user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\user.o: os.h
+.\objects\user.o: C:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Include\arm_math.h
+.\objects\user.o: C:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_compiler.h
+.\objects\user.o: C:\Users\dking\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_armcc.h
+.\objects\user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\float.h
+.\objects\user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
 .\objects\user.o: ../inc/BSP.h
 .\objects\user.o: ../inc/profile.h
-.\objects\user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h

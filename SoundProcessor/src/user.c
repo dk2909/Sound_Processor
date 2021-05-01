@@ -34,7 +34,7 @@
 #include "os.h"
 #include "../inc/BSP.h"
 #include "../inc/profile.h"
-#include <time.h>
+#include "arm_math.h"
 
 #define THREADFREQ 500   // frequency in Hz
 #define MAGNUM 512   // number of magnitude values
@@ -52,10 +52,13 @@ uint32_t Count3;   // number of times Task2 loops
 uint32_t Time;              // elasped time in ?100? ms units
 uint32_t mag[MAGNUM];	// array to hold all calculated magnitude values
 int16_t SoundArray[SOUNDRMSLENGTH];
+//float32_t SoundArray[SOUNDRMSLENGTH];
 uint16_t SoundData;         // raw data sampled from the microphone
 int ReDrawAxes = 0;         // non-zero means redraw axes on next display task
 int32_t NewData;  // true when new numbers to display on top of LCD
 int32_t LCDmutex ; // exclusive access to LCD
+//// testing rfft function
+arm_rfft_fast_instance_f32 fft_inst; // rfft fast instance structure
 
 
 //color constants
@@ -105,9 +108,13 @@ void Task0(void){ // periodic even thread
 	static int time = 0; // units of microphone sampling rate
 	BSP_Microphone_Input(&SoundData);
 	soundSum = soundSum + (int32_t)SoundData;
-  SoundArray[time] = SoundData;
+	SoundArray[time] = SoundData;
+  //SoundArray[time] = (float32_t)SoundData;
 	time = time + 1;
 	if (time == SOUNDRMSLENGTH){
+		// call function to process fft
+		// call a plotting function
+		soundSum = 0;
 		time = 0;
 	}
 	/*
@@ -131,7 +138,7 @@ void Task2(void){
   Count2 = 0;
 	////
 	// draw axes
-	drawaxes();
+	//drawaxes();
 	//ReDrawAxes = 0;
 	
   while(1){
@@ -140,6 +147,8 @@ void Task2(void){
   }
 }
 
+// Plot from array
+// x axis can be 0-99 units long
 void Task3(void){
   Count3 = 0;
 	/////////
@@ -153,7 +162,7 @@ void Task3(void){
 	OS_Wait(&LCDmutex);
 	int i = 0;
 	int32_t val = 0;
-	while (i < MAGNUM){
+	while (i < 50){
 		val = (int32_t) mag[i];
 		BSP_LCD_PlotPoint(val, SOUNDCOLOR);
 		BSP_LCD_PlotIncrement();
@@ -172,6 +181,8 @@ int main(void){
   OS_Init();            // initialize, disable interrupts
   Profile_Init();       // enable digital I/O on profile pins
 	Task0_Init();    // microphone init
+	//arm_rfft_fast_init_f32(&fft_inst,1024);
+	rfft_fast_init_1024_f32(&fft_inst);
 	BSP_Button1_Init();
   BSP_Button2_Init();
 	BSP_RGB_Init(0, 0, 0);

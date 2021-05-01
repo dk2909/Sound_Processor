@@ -24,7 +24,7 @@
  http://users.ece.utexas.edu/~valvano/
  */
 
-
+#include "arm_math.h"
 #ifndef __OS_H
 #define __OS_H  1
 
@@ -110,6 +110,9 @@ void OS_MailBox_Send(uint32_t data);
 // Outputs: data retreived
 // Errors:  none
 uint32_t OS_MailBox_Recv(void);
+
+////// fft
+arm_status rfft_fast_init_1024_f32(arm_rfft_fast_instance_f32 * S);
 								 
 
 
