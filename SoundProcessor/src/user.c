@@ -38,9 +38,10 @@
 
 #define THREADFREQ 500   // frequency in Hz
 #define MAGNUM 512   // number of magnitude values
-#define PLOTMAX 500
+#define PLOTMAX 100
 #define PLOTMIN 0
 #define SOUNDRMSLENGTH 1024 // number of samples to collect before calculating RMS (may overflow if greater than 4104)
+#define BUFFERLENGTH 1024
 
 // runs each thread 2 ms
 //uint32_t Count0;   // number of times Task0 loops
@@ -51,14 +52,20 @@ uint32_t Count3;   // number of times Task2 loops
 //---------------- Global variables shared between tasks ----------------
 uint32_t Time;              // elasped time in ?100? ms units
 uint32_t mag[MAGNUM];	// array to hold all calculated magnitude values
+uint32_t magArray[MAGNUM];
+uint32_t avgFreq[MAGNUM];
 int16_t SoundArray[SOUNDRMSLENGTH];
-//float32_t SoundArray[SOUNDRMSLENGTH];
+float32_t SoundBufferIn[SOUNDRMSLENGTH];
+float32_t SoundBufferOut[MAGNUM];
 uint16_t SoundData;         // raw data sampled from the microphone
-int ReDrawAxes = 0;         // non-zero means redraw axes on next display task
+int32_t SoundAvg;
+//int ReDrawAxes = 0;         // non-zero means redraw axes on next display task
 int32_t NewData;  // true when new numbers to display on top of LCD
 int32_t LCDmutex ; // exclusive access to LCD
 //// testing rfft function
 arm_rfft_fast_instance_f32 fft_inst; // rfft fast instance structure
+
+int timeTest;
 
 
 //color constants
@@ -72,7 +79,7 @@ void drawaxes(void){
 	uint32_t max = PLOTMAX;
 	uint32_t min = PLOTMIN;
 	OS_Wait(&LCDmutex);
-	BSP_LCD_Drawaxes(AXISCOLOR, BGCOLOR, "Time", "Magnitude", SOUNDCOLOR, "", 0, max, min);
+	BSP_LCD_Drawaxes(AXISCOLOR, BGCOLOR, "Frequency", "Magnitude", SOUNDCOLOR, "", 0, max, min);
 	OS_Signal(&LCDmutex);
 	//ReDrawAxes = 0;
 }
@@ -90,6 +97,12 @@ void Get_Mag(void){
 	return;
 }
 
+float32_t imaginary_abs(float32_t real, float32_t imag) {
+	return sqrtf(real*real+imag*imag);
+}
+
+
+
 // *********Task0_Init*********
 // initializes microphone
 // Task0 measures sound intensity
@@ -100,22 +113,38 @@ void Task0_Init(void){
 }
 
 // Capture and store raw sound data
-// periodic even thread
+// periodic even thread, called every 1ms
 void Task0(void){ // periodic even thread
   //Count0 = 0;
 	//////////
 	static int32_t soundSum = 0;
 	static int time = 0; // units of microphone sampling rate
 	BSP_Microphone_Input(&SoundData);
-	soundSum = soundSum + (int32_t)SoundData;
 	SoundArray[time] = SoundData;
-  //SoundArray[time] = (float32_t)SoundData;
+	// store raw sound data in buffer
+  SoundBufferIn[time] = (float32_t)SoundData;
+	
+	// increment time counter
 	time = time + 1;
+	// if SoundBuffer is full
 	if (time == SOUNDRMSLENGTH){
 		// call function to process fft
-		// call a plotting function
-		soundSum = 0;
-		time = 0;
+		arm_rfft_fast_f32(&fft_inst, SoundBufferIn, SoundBufferOut, 0);
+		int counter = 0;
+			for(int i = 0; i < SOUNDRMSLENGTH; i+=2){
+				// convert from time to frequency domain
+				magArray[counter] = (uint32_t)(20*log10f(imaginary_abs(SoundBufferOut[i], SoundBufferOut[i+1])));
+				//magArray[counter] = (uint32_t)(imaginary_abs(SoundBufferOut[i], SoundBufferOut[i+1]));
+				// save real numbers in array
+				counter++;
+				soundSum = soundSum + magArray[counter];
+
+			}
+			OS_Signal(&NewData);
+			//
+			SoundAvg = soundSum/SOUNDRMSLENGTH;
+			//soundSum = 0;
+			time = 0; // start writing back into beginning of array (MACQ)
 	}
 	/*
 	while(1){
@@ -127,8 +156,9 @@ void Task1(void){
   Count1 = 0;
 		///////////
 	OS_Wait(&LCDmutex);
-	BSP_LCD_DrawString(6, 0, "Violine", TOPTXTCOLOR);
+	BSP_LCD_DrawString(0, 0, "Avg DB", TOPTXTCOLOR);
   OS_Signal(&LCDmutex);
+	
   while(1){
     Count1++;
     Profile_Toggle1();    // toggle bit
@@ -153,27 +183,36 @@ void Task3(void){
   Count3 = 0;
 	/////////
 	// draw magnitude
-	Get_Mag();
+	//Get_Mag();
 	drawaxes();
+	while(1){
+		// waiting for data to plot
+		OS_Wait(&NewData);
+		OS_Wait(&LCDmutex);
+		int i = 0;
+		int32_t val = 0;
+		while (i < MAGNUM){
+			//val = (int32_t) mag[i];
+			val = (int32_t)magArray[i];
+			BSP_LCD_PlotPoint(val, SOUNDCOLOR);
+			BSP_LCD_PlotIncrement();
+			i++;
+		}
+		//BSP_LCD_SetCursor(5,  0); BSP_LCD_OutUDec4(SoundAvg,       TOPTXTCOLOR);
+		OS_Signal(&LCDmutex);
+		Count3++;
+    Profile_Toggle3();    // toggle bit
+	}
 	/*if(ReDrawAxes){
       drawaxes();
       ReDrawAxes = 0;
    }*/
-	OS_Wait(&LCDmutex);
-	int i = 0;
-	int32_t val = 0;
-	while (i < 50){
-		val = (int32_t) mag[i];
-		BSP_LCD_PlotPoint(val, SOUNDCOLOR);
-		BSP_LCD_PlotIncrement();
-		i++;
-	}
-	OS_Signal(&LCDmutex);
-	
+
+	/*
   while(1){
     Count3++;
     Profile_Toggle3();    // toggle bit
-	}
+	}*/
 }
 
 
@@ -190,9 +229,9 @@ int main(void){
 	BSP_LCD_Init();
   BSP_LCD_FillScreen(BSP_LCD_Color565(0, 0, 0));
 	Time = 0;
-	//OS_InitSemaphore(&NewData, 0);  // 0 means no data
+	OS_InitSemaphore(&NewData, 0);  // 0 means no data
   OS_InitSemaphore(&LCDmutex, 1); // 1 means free
-	//OS_MailBox_Init();              // initialize mailbox used to send data
+	OS_MailBox_Init();              // initialize mailbox used to send data
 	OS_AddPeriodicEventThreads(&Task0, 1);
   OS_AddThreads(&Task1, &Task2, &Task3);
   OS_Launch(BSP_Clock_GetFreq()/THREADFREQ); // doesn't return, interrupts enabled in here

@@ -125,7 +125,7 @@ int OS_AddPeriodicEventThreads(void(*thread)(void), uint32_t period){ // from pr
 void Scheduler(void){ // Program 3.12 from book
   // run any periodic event threads if needed
   // implement round robin scheduler, update RunPt
-	if ((++Counter) == wait){
+	if ((++Counter) == wait){	
 			EventThread();
 			Counter = 0; // reset counter
 	}
