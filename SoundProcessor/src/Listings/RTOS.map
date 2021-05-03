@@ -195,7 +195,6 @@ Section Cross References
     user.o(i.main) refers to user.o(i.Task0_Init) for Task0_Init
     user.o(i.main) refers to os.o(i.rfft_fast_init_1024_f32) for rfft_fast_init_1024_f32
     user.o(i.main) refers to bsp.o(i.BSP_RGB_Init) for BSP_RGB_Init
-    user.o(i.main) refers to bsp.o(i.BSP_Buzzer_Init) for BSP_Buzzer_Init
     user.o(i.main) refers to bsp.o(i.BSP_LCD_Init) for BSP_LCD_Init
     user.o(i.main) refers to bsp.o(i.BSP_LCD_Color565) for BSP_LCD_Color565
     user.o(i.main) refers to bsp.o(i.BSP_LCD_FillScreen) for BSP_LCD_FillScreen
@@ -470,6 +469,7 @@ Removing Unused input sections from the image.
     Removing bsp.o(i.BSP_Button1_Input), (12 bytes).
     Removing bsp.o(i.BSP_Button2_Init), (144 bytes).
     Removing bsp.o(i.BSP_Button2_Input), (12 bytes).
+    Removing bsp.o(i.BSP_Buzzer_Init), (212 bytes).
     Removing bsp.o(i.BSP_Buzzer_Set), (32 bytes).
     Removing bsp.o(i.BSP_Clock_GetFreq), (12 bytes).
     Removing bsp.o(i.BSP_Joystick_Init), (304 bytes).
@@ -671,7 +671,7 @@ Removing Unused input sections from the image.
     Removing arm_cfft_radix8_f32.o(.text), (0 bytes).
     Removing arm_cfft_radix8_f32.o(.ARM.exidx.text.arm_radix8_butterfly_f32), (8 bytes).
 
-206 unused section(s) (total 918080 bytes) removed from the image.
+207 unused section(s) (total 918292 bytes) removed from the image.
 
 ==============================================================================
 
@@ -682,53 +682,53 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      620  startup_tm4c123.o(RESET)
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
-    ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_copy.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
+    ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_copy.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr_intlibspace.o ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr_intlibspace.o ABSOLUTE
     ../clib/angel/scatter.s                  0x00000000   Number         0  __scatter.o ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
-    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
     ../clib/fenv.c                           0x00000000   Number         0  _rserrno.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  exit.o ABSOLUTE
@@ -752,10 +752,10 @@ Image Symbol Table
     ../fplib/trapv.s                         0x00000000   Number         0  trapv.o ABSOLUTE
     ../fplib/usenofp.s                       0x00000000   Number         0  usenofp.o ABSOLUTE
     ../mathlib/funder.c                      0x00000000   Number         0  funder.o ABSOLUTE
-    ../mathlib/log10f.c                      0x00000000   Number         0  log10f_x.o ABSOLUTE
     ../mathlib/log10f.c                      0x00000000   Number         0  log10f.o ABSOLUTE
-    ../mathlib/sqrtf.c                       0x00000000   Number         0  sqrtf.o ABSOLUTE
+    ../mathlib/log10f.c                      0x00000000   Number         0  log10f_x.o ABSOLUTE
     ../mathlib/sqrtf.c                       0x00000000   Number         0  sqrtf_x.o ABSOLUTE
+    ../mathlib/sqrtf.c                       0x00000000   Number         0  sqrtf.o ABSOLUTE
     ..\\inc\\BSP.c                           0x00000000   Number         0  bsp.o ABSOLUTE
     ..\inc\BSP.c                             0x00000000   Number         0  bsp.o ABSOLUTE
     ..\inc\Profile.c                         0x00000000   Number         0  profile.o ABSOLUTE
@@ -840,99 +840,98 @@ Image Symbol Table
     [Anonymous Symbol]                       0x00001990   Section        0  arm_rfft_fast_f32.o(.text.arm_rfft_fast_f32)
     [Anonymous Symbol]                       0x000019d8   Section        0  arm_rfft_fast_f32.o(.text.merge_rfft_f32)
     [Anonymous Symbol]                       0x00001ae4   Section        0  arm_rfft_fast_f32.o(.text.stage_rfft_f32)
-    i.BSP_Buzzer_Init                        0x00001c00   Section        0  bsp.o(i.BSP_Buzzer_Init)
-    i.BSP_Clock_InitFastest                  0x00001cd4   Section        0  bsp.o(i.BSP_Clock_InitFastest)
-    i.BSP_Delay1ms                           0x00001d60   Section        0  bsp.o(i.BSP_Delay1ms)
-    i.BSP_LCD_Color565                       0x00001d76   Section        0  bsp.o(i.BSP_LCD_Color565)
-    i.BSP_LCD_DrawChar                       0x00001d90   Section        0  bsp.o(i.BSP_LCD_DrawChar)
-    i.BSP_LCD_DrawFastHLine                  0x00001ea0   Section        0  bsp.o(i.BSP_LCD_DrawFastHLine)
-    i.BSP_LCD_DrawFastVLine                  0x00001f1c   Section        0  bsp.o(i.BSP_LCD_DrawFastVLine)
-    i.BSP_LCD_DrawPixel                      0x00001f98   Section        0  bsp.o(i.BSP_LCD_DrawPixel)
-    i.BSP_LCD_DrawString                     0x00001fe0   Section        0  bsp.o(i.BSP_LCD_DrawString)
-    i.BSP_LCD_Drawaxes                       0x00002038   Section        0  bsp.o(i.BSP_LCD_Drawaxes)
-    i.BSP_LCD_FillRect                       0x0000215c   Section        0  bsp.o(i.BSP_LCD_FillRect)
-    i.BSP_LCD_FillScreen                     0x00002208   Section        0  bsp.o(i.BSP_LCD_FillScreen)
-    i.BSP_LCD_Init                           0x0000222c   Section        0  bsp.o(i.BSP_LCD_Init)
-    i.BSP_LCD_OutUDec4                       0x00002238   Section        0  bsp.o(i.BSP_LCD_OutUDec4)
-    i.BSP_LCD_PlotIncrement                  0x000022c0   Section        0  bsp.o(i.BSP_LCD_PlotIncrement)
-    i.BSP_LCD_PlotPoint                      0x000022f8   Section        0  bsp.o(i.BSP_LCD_PlotPoint)
-    i.BSP_LCD_SetCursor                      0x0000235c   Section        0  bsp.o(i.BSP_LCD_SetCursor)
-    i.BSP_Microphone_Init                    0x0000237c   Section        0  bsp.o(i.BSP_Microphone_Init)
-    i.BSP_Microphone_Input                   0x00002428   Section        0  bsp.o(i.BSP_Microphone_Input)
-    i.BSP_RGB_Init                           0x00002454   Section        0  bsp.o(i.BSP_RGB_Init)
-    i.OS_Init                                0x00002694   Section        0  os.o(i.OS_Init)
-    i.ST7735_InitR                           0x000026ac   Section        0  bsp.o(i.ST7735_InitR)
-    ST7735_InitR                             0x000026ad   Thumb Code    86  bsp.o(i.ST7735_InitR)
-    i.Scheduler                              0x00002720   Section        0  os.o(i.Scheduler)
-    i.Task0                                  0x0000275c   Section        0  user.o(i.Task0)
-    i.Task0_Init                             0x0000282c   Section        0  user.o(i.Task0_Init)
-    i.Task1                                  0x00002834   Section        0  user.o(i.Task1)
-    i.Task2                                  0x00002884   Section        0  user.o(i.Task2)
-    i.Task3                                  0x000028b4   Section        0  user.o(i.Task3)
-    i.WideTimer3A_Handler                    0x00002914   Section        0  bsp.o(i.WideTimer3A_Handler)
-    i.WideTimer4A_Handler                    0x0000292c   Section        0  bsp.o(i.WideTimer4A_Handler)
-    i.WideTimer5A_Handler                    0x00002944   Section        0  bsp.o(i.WideTimer5A_Handler)
-    i.__mathlib_flt_divzero                  0x0000295c   Section        0  funder.o(i.__mathlib_flt_divzero)
-    i.__mathlib_flt_infnan                   0x00002966   Section        0  funder.o(i.__mathlib_flt_infnan)
-    i.__mathlib_flt_invalid                  0x0000296c   Section        0  funder.o(i.__mathlib_flt_invalid)
-    i.adcinit                                0x00002974   Section        0  bsp.o(i.adcinit)
-    adcinit                                  0x00002975   Thumb Code    58  bsp.o(i.adcinit)
-    i.call_FFT                               0x000029c0   Section        0  user.o(i.call_FFT)
-    i.commandList                            0x00002abc   Section        0  bsp.o(i.commandList)
-    commandList                              0x00002abd   Thumb Code    86  bsp.o(i.commandList)
-    i.commonInit                             0x00002b14   Section        0  bsp.o(i.commonInit)
-    commonInit                               0x00002b15   Thumb Code   452  bsp.o(i.commonInit)
-    i.drawaxes                               0x00002d18   Section        0  user.o(i.drawaxes)
-    i.fillmessage                            0x00002d60   Section        0  bsp.o(i.fillmessage)
-    fillmessage                              0x00002d61   Thumb Code    64  bsp.o(i.fillmessage)
-    i.fillmessage4                           0x00002da8   Section        0  bsp.o(i.fillmessage4)
-    fillmessage4                             0x00002da9   Thumb Code    90  bsp.o(i.fillmessage4)
-    i.imaginary_abs                          0x00002e0c   Section        0  user.o(i.imaginary_abs)
-    i.log10f                                 0x00002e38   Section        0  log10f.o(i.log10f)
-    i.main                                   0x00002fec   Section        0  user.o(i.main)
-    i.pushColor                              0x00003054   Section        0  bsp.o(i.pushColor)
-    pushColor                                0x00003055   Thumb Code    18  bsp.o(i.pushColor)
-    i.rfft_fast_init_1024_f32                0x00003068   Section        0  os.o(i.rfft_fast_init_1024_f32)
-    i.setAddrWindow                          0x00003098   Section        0  bsp.o(i.setAddrWindow)
-    setAddrWindow                            0x00003099   Thumb Code   106  bsp.o(i.setAddrWindow)
-    i.sqrt32                                 0x0000310c   Section        0  user.o(i.sqrt32)
-    i.sqrtf                                  0x0000312a   Section        0  sqrtf.o(i.sqrtf)
-    i.writecommand                           0x00003158   Section        0  bsp.o(i.writecommand)
-    writecommand                             0x00003159   Thumb Code    62  bsp.o(i.writecommand)
-    i.writedata                              0x000031a0   Section        0  bsp.o(i.writedata)
-    writedata                                0x000031a1   Thumb Code    64  bsp.o(i.writedata)
-    x$fpl$fadd                               0x000031e8   Section      196  faddsub_clz.o(x$fpl$fadd)
-    _fadd1                                   0x000031f7   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
-    x$fpl$fcheck1                            0x000032ac   Section       12  fcheck1.o(x$fpl$fcheck1)
-    x$fpl$fcmp                               0x000032b8   Section       84  fcmp.o(x$fpl$fcmp)
-    x$fpl$fcmpinf                            0x0000330c   Section       24  fcmpi.o(x$fpl$fcmpinf)
-    x$fpl$fdiv                               0x00003324   Section      388  fdiv.o(x$fpl$fdiv)
-    _fdiv1                                   0x00003325   Thumb Code     0  fdiv.o(x$fpl$fdiv)
-    x$fpl$feqf                               0x000034a8   Section      104  feqf.o(x$fpl$feqf)
-    x$fpl$ffixu                              0x00003510   Section       62  ffixu.o(x$fpl$ffixu)
-    x$fpl$fflt                               0x00003550   Section       48  fflt_clz.o(x$fpl$fflt)
-    x$fpl$ffltu                              0x00003580   Section       38  fflt_clz.o(x$fpl$ffltu)
-    x$fpl$fgeqf                              0x000035a8   Section      104  fgeqf.o(x$fpl$fgeqf)
-    x$fpl$fleqf                              0x00003610   Section      104  fleqf.o(x$fpl$fleqf)
-    x$fpl$fmul                               0x00003678   Section      258  fmul.o(x$fpl$fmul)
-    x$fpl$fnaninf                            0x0000377a   Section      140  fnaninf.o(x$fpl$fnaninf)
-    x$fpl$fretinf                            0x00003806   Section       10  fretinf.o(x$fpl$fretinf)
-    x$fpl$fsqrt                              0x00003810   Section      272  fsqrt.o(x$fpl$fsqrt)
-    x$fpl$fsub                               0x00003920   Section      234  faddsub_clz.o(x$fpl$fsub)
-    _fsub1                                   0x0000392f   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
-    x$fpl$retnan                             0x00003a0a   Section      100  retnan.o(x$fpl$retnan)
-    x$fpl$scalbnf                            0x00003a6e   Section       76  scalbnf.o(x$fpl$scalbnf)
-    x$fpl$trapveneer                         0x00003aba   Section       48  trapv.o(x$fpl$trapveneer)
-    .constdata                               0x00003aea   Section     1403  bsp.o(.constdata)
-    x$fpl$usenofp                            0x00003aea   Section        0  usenofp.o(x$fpl$usenofp)
-    Font                                     0x00003aea   Data        1275  bsp.o(.constdata)
-    Rcmd1                                    0x00003fe5   Data          59  bsp.o(.constdata)
-    Rcmd2green                               0x00004020   Data          13  bsp.o(.constdata)
-    Rcmd2red                                 0x0000402d   Data          13  bsp.o(.constdata)
-    Rcmd3                                    0x0000403a   Data          43  bsp.o(.constdata)
-    .constdata                               0x00004068   Section       64  log10f.o(.constdata)
-    logahi                                   0x00004068   Data          32  log10f.o(.constdata)
-    logalo                                   0x00004088   Data          32  log10f.o(.constdata)
+    i.BSP_Clock_InitFastest                  0x00001c00   Section        0  bsp.o(i.BSP_Clock_InitFastest)
+    i.BSP_Delay1ms                           0x00001c8c   Section        0  bsp.o(i.BSP_Delay1ms)
+    i.BSP_LCD_Color565                       0x00001ca2   Section        0  bsp.o(i.BSP_LCD_Color565)
+    i.BSP_LCD_DrawChar                       0x00001cbc   Section        0  bsp.o(i.BSP_LCD_DrawChar)
+    i.BSP_LCD_DrawFastHLine                  0x00001dcc   Section        0  bsp.o(i.BSP_LCD_DrawFastHLine)
+    i.BSP_LCD_DrawFastVLine                  0x00001e48   Section        0  bsp.o(i.BSP_LCD_DrawFastVLine)
+    i.BSP_LCD_DrawPixel                      0x00001ec4   Section        0  bsp.o(i.BSP_LCD_DrawPixel)
+    i.BSP_LCD_DrawString                     0x00001f0c   Section        0  bsp.o(i.BSP_LCD_DrawString)
+    i.BSP_LCD_Drawaxes                       0x00001f64   Section        0  bsp.o(i.BSP_LCD_Drawaxes)
+    i.BSP_LCD_FillRect                       0x00002088   Section        0  bsp.o(i.BSP_LCD_FillRect)
+    i.BSP_LCD_FillScreen                     0x00002134   Section        0  bsp.o(i.BSP_LCD_FillScreen)
+    i.BSP_LCD_Init                           0x00002158   Section        0  bsp.o(i.BSP_LCD_Init)
+    i.BSP_LCD_OutUDec4                       0x00002164   Section        0  bsp.o(i.BSP_LCD_OutUDec4)
+    i.BSP_LCD_PlotIncrement                  0x000021ec   Section        0  bsp.o(i.BSP_LCD_PlotIncrement)
+    i.BSP_LCD_PlotPoint                      0x00002224   Section        0  bsp.o(i.BSP_LCD_PlotPoint)
+    i.BSP_LCD_SetCursor                      0x00002288   Section        0  bsp.o(i.BSP_LCD_SetCursor)
+    i.BSP_Microphone_Init                    0x000022a8   Section        0  bsp.o(i.BSP_Microphone_Init)
+    i.BSP_Microphone_Input                   0x00002354   Section        0  bsp.o(i.BSP_Microphone_Input)
+    i.BSP_RGB_Init                           0x00002380   Section        0  bsp.o(i.BSP_RGB_Init)
+    i.OS_Init                                0x000025c0   Section        0  os.o(i.OS_Init)
+    i.ST7735_InitR                           0x000025d8   Section        0  bsp.o(i.ST7735_InitR)
+    ST7735_InitR                             0x000025d9   Thumb Code    86  bsp.o(i.ST7735_InitR)
+    i.Scheduler                              0x0000264c   Section        0  os.o(i.Scheduler)
+    i.Task0                                  0x00002688   Section        0  user.o(i.Task0)
+    i.Task0_Init                             0x00002758   Section        0  user.o(i.Task0_Init)
+    i.Task1                                  0x00002760   Section        0  user.o(i.Task1)
+    i.Task2                                  0x000027b0   Section        0  user.o(i.Task2)
+    i.Task3                                  0x000027e0   Section        0  user.o(i.Task3)
+    i.WideTimer3A_Handler                    0x00002840   Section        0  bsp.o(i.WideTimer3A_Handler)
+    i.WideTimer4A_Handler                    0x00002858   Section        0  bsp.o(i.WideTimer4A_Handler)
+    i.WideTimer5A_Handler                    0x00002870   Section        0  bsp.o(i.WideTimer5A_Handler)
+    i.__mathlib_flt_divzero                  0x00002888   Section        0  funder.o(i.__mathlib_flt_divzero)
+    i.__mathlib_flt_infnan                   0x00002892   Section        0  funder.o(i.__mathlib_flt_infnan)
+    i.__mathlib_flt_invalid                  0x00002898   Section        0  funder.o(i.__mathlib_flt_invalid)
+    i.adcinit                                0x000028a0   Section        0  bsp.o(i.adcinit)
+    adcinit                                  0x000028a1   Thumb Code    58  bsp.o(i.adcinit)
+    i.call_FFT                               0x000028ec   Section        0  user.o(i.call_FFT)
+    i.commandList                            0x000029e8   Section        0  bsp.o(i.commandList)
+    commandList                              0x000029e9   Thumb Code    86  bsp.o(i.commandList)
+    i.commonInit                             0x00002a40   Section        0  bsp.o(i.commonInit)
+    commonInit                               0x00002a41   Thumb Code   452  bsp.o(i.commonInit)
+    i.drawaxes                               0x00002c44   Section        0  user.o(i.drawaxes)
+    i.fillmessage                            0x00002c8c   Section        0  bsp.o(i.fillmessage)
+    fillmessage                              0x00002c8d   Thumb Code    64  bsp.o(i.fillmessage)
+    i.fillmessage4                           0x00002cd4   Section        0  bsp.o(i.fillmessage4)
+    fillmessage4                             0x00002cd5   Thumb Code    90  bsp.o(i.fillmessage4)
+    i.imaginary_abs                          0x00002d38   Section        0  user.o(i.imaginary_abs)
+    i.log10f                                 0x00002d64   Section        0  log10f.o(i.log10f)
+    i.main                                   0x00002f18   Section        0  user.o(i.main)
+    i.pushColor                              0x00002f78   Section        0  bsp.o(i.pushColor)
+    pushColor                                0x00002f79   Thumb Code    18  bsp.o(i.pushColor)
+    i.rfft_fast_init_1024_f32                0x00002f8c   Section        0  os.o(i.rfft_fast_init_1024_f32)
+    i.setAddrWindow                          0x00002fbc   Section        0  bsp.o(i.setAddrWindow)
+    setAddrWindow                            0x00002fbd   Thumb Code   106  bsp.o(i.setAddrWindow)
+    i.sqrt32                                 0x00003030   Section        0  user.o(i.sqrt32)
+    i.sqrtf                                  0x0000304e   Section        0  sqrtf.o(i.sqrtf)
+    i.writecommand                           0x0000307c   Section        0  bsp.o(i.writecommand)
+    writecommand                             0x0000307d   Thumb Code    62  bsp.o(i.writecommand)
+    i.writedata                              0x000030c4   Section        0  bsp.o(i.writedata)
+    writedata                                0x000030c5   Thumb Code    64  bsp.o(i.writedata)
+    x$fpl$fadd                               0x0000310c   Section      196  faddsub_clz.o(x$fpl$fadd)
+    _fadd1                                   0x0000311b   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
+    x$fpl$fcheck1                            0x000031d0   Section       12  fcheck1.o(x$fpl$fcheck1)
+    x$fpl$fcmp                               0x000031dc   Section       84  fcmp.o(x$fpl$fcmp)
+    x$fpl$fcmpinf                            0x00003230   Section       24  fcmpi.o(x$fpl$fcmpinf)
+    x$fpl$fdiv                               0x00003248   Section      388  fdiv.o(x$fpl$fdiv)
+    _fdiv1                                   0x00003249   Thumb Code     0  fdiv.o(x$fpl$fdiv)
+    x$fpl$feqf                               0x000033cc   Section      104  feqf.o(x$fpl$feqf)
+    x$fpl$ffixu                              0x00003434   Section       62  ffixu.o(x$fpl$ffixu)
+    x$fpl$fflt                               0x00003474   Section       48  fflt_clz.o(x$fpl$fflt)
+    x$fpl$ffltu                              0x000034a4   Section       38  fflt_clz.o(x$fpl$ffltu)
+    x$fpl$fgeqf                              0x000034cc   Section      104  fgeqf.o(x$fpl$fgeqf)
+    x$fpl$fleqf                              0x00003534   Section      104  fleqf.o(x$fpl$fleqf)
+    x$fpl$fmul                               0x0000359c   Section      258  fmul.o(x$fpl$fmul)
+    x$fpl$fnaninf                            0x0000369e   Section      140  fnaninf.o(x$fpl$fnaninf)
+    x$fpl$fretinf                            0x0000372a   Section       10  fretinf.o(x$fpl$fretinf)
+    x$fpl$fsqrt                              0x00003734   Section      272  fsqrt.o(x$fpl$fsqrt)
+    x$fpl$fsub                               0x00003844   Section      234  faddsub_clz.o(x$fpl$fsub)
+    _fsub1                                   0x00003853   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
+    x$fpl$retnan                             0x0000392e   Section      100  retnan.o(x$fpl$retnan)
+    x$fpl$scalbnf                            0x00003992   Section       76  scalbnf.o(x$fpl$scalbnf)
+    x$fpl$trapveneer                         0x000039de   Section       48  trapv.o(x$fpl$trapveneer)
+    .constdata                               0x00003a0e   Section     1403  bsp.o(.constdata)
+    x$fpl$usenofp                            0x00003a0e   Section        0  usenofp.o(x$fpl$usenofp)
+    Font                                     0x00003a0e   Data        1275  bsp.o(.constdata)
+    Rcmd1                                    0x00003f09   Data          59  bsp.o(.constdata)
+    Rcmd2green                               0x00003f44   Data          13  bsp.o(.constdata)
+    Rcmd2red                                 0x00003f51   Data          13  bsp.o(.constdata)
+    Rcmd3                                    0x00003f5e   Data          43  bsp.o(.constdata)
+    .constdata                               0x00003f8c   Section       64  log10f.o(.constdata)
+    logahi                                   0x00003f8c   Data          32  log10f.o(.constdata)
+    logalo                                   0x00003fac   Data          32  log10f.o(.constdata)
     .data                                    0x20000000   Section       68  bsp.o(.data)
     ClockFrequency                           0x20000000   Data           4  bsp.o(.data)
     PWMCycles                                0x20000004   Data           2  bsp.o(.data)
@@ -941,18 +940,18 @@ Image Symbol Table
     _width                                   0x20000014   Data           2  bsp.o(.data)
     _height                                  0x20000016   Data           2  bsp.o(.data)
     .data                                    0x20000044   Section       32  os.o(.data)
-    .data                                    0x20000064   Section       76  user.o(.data)
-    dBsum                                    0x200000a4   Data           4  user.o(.data)
-    rawSum                                   0x200000a8   Data           4  user.o(.data)
-    time                                     0x200000ac   Data           4  user.o(.data)
-    .bss                                     0x200000b0   Section       12  bsp.o(.bss)
-    .bss                                     0x200000bc   Section    18456  user.o(.bss)
-    .bss                                     0x200048d4   Section       96  libspace.o(.bss)
-    HEAP                                     0x20004938   Section        0  startup_tm4c123.o(HEAP)
-    STACK                                    0x20004938   Section      512  startup_tm4c123.o(STACK)
-    Heap_Mem                                 0x20004938   Data           0  startup_tm4c123.o(HEAP)
-    Stack_Mem                                0x20004938   Data         512  startup_tm4c123.o(STACK)
-    __initial_sp                             0x20004b38   Data           0  startup_tm4c123.o(STACK)
+    .data                                    0x20000064   Section       64  user.o(.data)
+    dBsum                                    0x20000098   Data           4  user.o(.data)
+    rawSum                                   0x2000009c   Data           4  user.o(.data)
+    time                                     0x200000a0   Data           4  user.o(.data)
+    .bss                                     0x200000a4   Section       12  bsp.o(.bss)
+    .bss                                     0x200000b0   Section    18456  user.o(.bss)
+    .bss                                     0x200048c8   Section       96  libspace.o(.bss)
+    HEAP                                     0x20004928   Section        0  startup_tm4c123.o(HEAP)
+    STACK                                    0x20004928   Section      512  startup_tm4c123.o(STACK)
+    Heap_Mem                                 0x20004928   Data           0  startup_tm4c123.o(HEAP)
+    Stack_Mem                                0x20004928   Data         512  startup_tm4c123.o(STACK)
+    __initial_sp                             0x20004b28   Data           0  startup_tm4c123.o(STACK)
 
     Global Symbols
 
@@ -1188,92 +1187,91 @@ Image Symbol Table
     arm_rfft_fast_f32                        0x00001991   Thumb Code    70  arm_rfft_fast_f32.o(.text.arm_rfft_fast_f32)
     merge_rfft_f32                           0x000019d9   Thumb Code   266  arm_rfft_fast_f32.o(.text.merge_rfft_f32)
     stage_rfft_f32                           0x00001ae5   Thumb Code   282  arm_rfft_fast_f32.o(.text.stage_rfft_f32)
-    BSP_Buzzer_Init                          0x00001c01   Thumb Code   184  bsp.o(i.BSP_Buzzer_Init)
-    BSP_Clock_InitFastest                    0x00001cd5   Thumb Code   126  bsp.o(i.BSP_Clock_InitFastest)
-    BSP_Delay1ms                             0x00001d61   Thumb Code    22  bsp.o(i.BSP_Delay1ms)
-    BSP_LCD_Color565                         0x00001d77   Thumb Code    24  bsp.o(i.BSP_LCD_Color565)
-    BSP_LCD_DrawChar                         0x00001d91   Thumb Code   260  bsp.o(i.BSP_LCD_DrawChar)
-    BSP_LCD_DrawFastHLine                    0x00001ea1   Thumb Code   116  bsp.o(i.BSP_LCD_DrawFastHLine)
-    BSP_LCD_DrawFastVLine                    0x00001f1d   Thumb Code   116  bsp.o(i.BSP_LCD_DrawFastVLine)
-    BSP_LCD_DrawPixel                        0x00001f99   Thumb Code    64  bsp.o(i.BSP_LCD_DrawPixel)
-    BSP_LCD_DrawString                       0x00001fe1   Thumb Code    86  bsp.o(i.BSP_LCD_DrawString)
-    BSP_LCD_Drawaxes                         0x00002039   Thumb Code   272  bsp.o(i.BSP_LCD_Drawaxes)
-    BSP_LCD_FillRect                         0x0000215d   Thumb Code   164  bsp.o(i.BSP_LCD_FillRect)
-    BSP_LCD_FillScreen                       0x00002209   Thumb Code    28  bsp.o(i.BSP_LCD_FillScreen)
-    BSP_LCD_Init                             0x0000222d   Thumb Code    10  bsp.o(i.BSP_LCD_Init)
-    BSP_LCD_OutUDec4                         0x00002239   Thumb Code   116  bsp.o(i.BSP_LCD_OutUDec4)
-    BSP_LCD_PlotIncrement                    0x000022c1   Thumb Code    46  bsp.o(i.BSP_LCD_PlotIncrement)
-    BSP_LCD_PlotPoint                        0x000022f9   Thumb Code    86  bsp.o(i.BSP_LCD_PlotPoint)
-    BSP_LCD_SetCursor                        0x0000235d   Thumb Code    22  bsp.o(i.BSP_LCD_SetCursor)
-    BSP_Microphone_Init                      0x0000237d   Thumb Code   152  bsp.o(i.BSP_Microphone_Init)
-    BSP_Microphone_Input                     0x00002429   Thumb Code    40  bsp.o(i.BSP_Microphone_Input)
-    BSP_RGB_Init                             0x00002455   Thumb Code   522  bsp.o(i.BSP_RGB_Init)
-    OS_Init                                  0x00002695   Thumb Code    18  os.o(i.OS_Init)
-    Scheduler                                0x00002721   Thumb Code    44  os.o(i.Scheduler)
-    Task0                                    0x0000275d   Thumb Code   180  user.o(i.Task0)
-    Task0_Init                               0x0000282d   Thumb Code     8  user.o(i.Task0_Init)
-    Task1                                    0x00002835   Thumb Code    60  user.o(i.Task1)
-    Task2                                    0x00002885   Thumb Code    42  user.o(i.Task2)
-    Task3                                    0x000028b5   Thumb Code    76  user.o(i.Task3)
-    WideTimer3A_Handler                      0x00002915   Thumb Code    16  bsp.o(i.WideTimer3A_Handler)
-    WideTimer4A_Handler                      0x0000292d   Thumb Code    16  bsp.o(i.WideTimer4A_Handler)
-    WideTimer5A_Handler                      0x00002945   Thumb Code    16  bsp.o(i.WideTimer5A_Handler)
-    __mathlib_flt_divzero                    0x0000295d   Thumb Code    10  funder.o(i.__mathlib_flt_divzero)
-    __mathlib_flt_infnan                     0x00002967   Thumb Code     6  funder.o(i.__mathlib_flt_infnan)
-    __mathlib_flt_invalid                    0x0000296d   Thumb Code     8  funder.o(i.__mathlib_flt_invalid)
-    call_FFT                                 0x000029c1   Thumb Code   204  user.o(i.call_FFT)
-    drawaxes                                 0x00002d19   Thumb Code    44  user.o(i.drawaxes)
-    imaginary_abs                            0x00002e0d   Thumb Code    44  user.o(i.imaginary_abs)
-    log10f                                   0x00002e39   Thumb Code   384  log10f.o(i.log10f)
-    main                                     0x00002fed   Thumb Code    94  user.o(i.main)
-    rfft_fast_init_1024_f32                  0x00003069   Thumb Code    36  os.o(i.rfft_fast_init_1024_f32)
-    sqrt32                                   0x0000310d   Thumb Code    30  user.o(i.sqrt32)
-    sqrtf                                    0x0000312b   Thumb Code    44  sqrtf.o(i.sqrtf)
-    __aeabi_fadd                             0x000031e9   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
-    _fadd                                    0x000031e9   Thumb Code   196  faddsub_clz.o(x$fpl$fadd)
-    __fpl_fcheck_NaN1                        0x000032ad   Thumb Code     6  fcheck1.o(x$fpl$fcheck1)
-    __aeabi_fcmpeq                           0x000032b9   Thumb Code     0  fcmp.o(x$fpl$fcmp)
-    _feq                                     0x000032b9   Thumb Code    14  fcmp.o(x$fpl$fcmp)
-    _fneq                                    0x000032c7   Thumb Code    14  fcmp.o(x$fpl$fcmp)
-    __aeabi_fcmpgt                           0x000032d5   Thumb Code     0  fcmp.o(x$fpl$fcmp)
-    _fgr                                     0x000032d5   Thumb Code    14  fcmp.o(x$fpl$fcmp)
-    __aeabi_fcmpge                           0x000032e3   Thumb Code     0  fcmp.o(x$fpl$fcmp)
-    _fgeq                                    0x000032e3   Thumb Code    14  fcmp.o(x$fpl$fcmp)
-    __aeabi_fcmple                           0x000032f1   Thumb Code     0  fcmp.o(x$fpl$fcmp)
-    _fleq                                    0x000032f1   Thumb Code    14  fcmp.o(x$fpl$fcmp)
-    __aeabi_fcmplt                           0x000032ff   Thumb Code     0  fcmp.o(x$fpl$fcmp)
-    _fls                                     0x000032ff   Thumb Code    14  fcmp.o(x$fpl$fcmp)
-    __fpl_fcmp_Inf                           0x0000330d   Thumb Code    24  fcmpi.o(x$fpl$fcmpinf)
-    __aeabi_fdiv                             0x00003325   Thumb Code     0  fdiv.o(x$fpl$fdiv)
-    _fdiv                                    0x00003325   Thumb Code   384  fdiv.o(x$fpl$fdiv)
-    __aeabi_cfcmpeq                          0x000034a9   Thumb Code     0  feqf.o(x$fpl$feqf)
-    _fcmpeq                                  0x000034a9   Thumb Code   104  feqf.o(x$fpl$feqf)
-    __aeabi_f2uiz                            0x00003511   Thumb Code     0  ffixu.o(x$fpl$ffixu)
-    _ffixu                                   0x00003511   Thumb Code    62  ffixu.o(x$fpl$ffixu)
-    __aeabi_i2f                              0x00003551   Thumb Code     0  fflt_clz.o(x$fpl$fflt)
-    _fflt                                    0x00003551   Thumb Code    48  fflt_clz.o(x$fpl$fflt)
-    __aeabi_ui2f                             0x00003581   Thumb Code     0  fflt_clz.o(x$fpl$ffltu)
-    _ffltu                                   0x00003581   Thumb Code    38  fflt_clz.o(x$fpl$ffltu)
-    _fcmpge                                  0x000035a9   Thumb Code   104  fgeqf.o(x$fpl$fgeqf)
-    __aeabi_cfcmple                          0x00003611   Thumb Code     0  fleqf.o(x$fpl$fleqf)
-    _fcmple                                  0x00003611   Thumb Code   104  fleqf.o(x$fpl$fleqf)
-    __fpl_fcmple_InfNaN                      0x00003663   Thumb Code     0  fleqf.o(x$fpl$fleqf)
-    __aeabi_fmul                             0x00003679   Thumb Code     0  fmul.o(x$fpl$fmul)
-    _fmul                                    0x00003679   Thumb Code   258  fmul.o(x$fpl$fmul)
-    __fpl_fnaninf                            0x0000377b   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
-    __fpl_fretinf                            0x00003807   Thumb Code    10  fretinf.o(x$fpl$fretinf)
-    _fsqrt                                   0x00003811   Thumb Code   272  fsqrt.o(x$fpl$fsqrt)
-    __aeabi_fsub                             0x00003921   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
-    _fsub                                    0x00003921   Thumb Code   234  faddsub_clz.o(x$fpl$fsub)
-    __fpl_return_NaN                         0x00003a0b   Thumb Code   100  retnan.o(x$fpl$retnan)
-    __ARM_scalbnf                            0x00003a6f   Thumb Code    76  scalbnf.o(x$fpl$scalbnf)
-    __fpl_cmpreturn                          0x00003abb   Thumb Code    48  trapv.o(x$fpl$trapveneer)
-    __I$use$fp                               0x00003aea   Number         0  usenofp.o(x$fpl$usenofp)
-    armBitRevIndexTable512                   0x000040a8   Data         896  arm_common_tables.o(.rodata.armBitRevIndexTable512)
-    twiddleCoef_512                          0x00004428   Data        4096  arm_common_tables.o(.rodata.twiddleCoef_512)
-    twiddleCoef_rfft_1024                    0x00005428   Data        4096  arm_common_tables.o(.rodata.twiddleCoef_rfft_1024)
-    Region$$Table$$Base                      0x00006428   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00006448   Number         0  anon$$obj.o(Region$$Table)
+    BSP_Clock_InitFastest                    0x00001c01   Thumb Code   126  bsp.o(i.BSP_Clock_InitFastest)
+    BSP_Delay1ms                             0x00001c8d   Thumb Code    22  bsp.o(i.BSP_Delay1ms)
+    BSP_LCD_Color565                         0x00001ca3   Thumb Code    24  bsp.o(i.BSP_LCD_Color565)
+    BSP_LCD_DrawChar                         0x00001cbd   Thumb Code   260  bsp.o(i.BSP_LCD_DrawChar)
+    BSP_LCD_DrawFastHLine                    0x00001dcd   Thumb Code   116  bsp.o(i.BSP_LCD_DrawFastHLine)
+    BSP_LCD_DrawFastVLine                    0x00001e49   Thumb Code   116  bsp.o(i.BSP_LCD_DrawFastVLine)
+    BSP_LCD_DrawPixel                        0x00001ec5   Thumb Code    64  bsp.o(i.BSP_LCD_DrawPixel)
+    BSP_LCD_DrawString                       0x00001f0d   Thumb Code    86  bsp.o(i.BSP_LCD_DrawString)
+    BSP_LCD_Drawaxes                         0x00001f65   Thumb Code   272  bsp.o(i.BSP_LCD_Drawaxes)
+    BSP_LCD_FillRect                         0x00002089   Thumb Code   164  bsp.o(i.BSP_LCD_FillRect)
+    BSP_LCD_FillScreen                       0x00002135   Thumb Code    28  bsp.o(i.BSP_LCD_FillScreen)
+    BSP_LCD_Init                             0x00002159   Thumb Code    10  bsp.o(i.BSP_LCD_Init)
+    BSP_LCD_OutUDec4                         0x00002165   Thumb Code   116  bsp.o(i.BSP_LCD_OutUDec4)
+    BSP_LCD_PlotIncrement                    0x000021ed   Thumb Code    46  bsp.o(i.BSP_LCD_PlotIncrement)
+    BSP_LCD_PlotPoint                        0x00002225   Thumb Code    86  bsp.o(i.BSP_LCD_PlotPoint)
+    BSP_LCD_SetCursor                        0x00002289   Thumb Code    22  bsp.o(i.BSP_LCD_SetCursor)
+    BSP_Microphone_Init                      0x000022a9   Thumb Code   152  bsp.o(i.BSP_Microphone_Init)
+    BSP_Microphone_Input                     0x00002355   Thumb Code    40  bsp.o(i.BSP_Microphone_Input)
+    BSP_RGB_Init                             0x00002381   Thumb Code   522  bsp.o(i.BSP_RGB_Init)
+    OS_Init                                  0x000025c1   Thumb Code    18  os.o(i.OS_Init)
+    Scheduler                                0x0000264d   Thumb Code    44  os.o(i.Scheduler)
+    Task0                                    0x00002689   Thumb Code   180  user.o(i.Task0)
+    Task0_Init                               0x00002759   Thumb Code     8  user.o(i.Task0_Init)
+    Task1                                    0x00002761   Thumb Code    60  user.o(i.Task1)
+    Task2                                    0x000027b1   Thumb Code    42  user.o(i.Task2)
+    Task3                                    0x000027e1   Thumb Code    76  user.o(i.Task3)
+    WideTimer3A_Handler                      0x00002841   Thumb Code    16  bsp.o(i.WideTimer3A_Handler)
+    WideTimer4A_Handler                      0x00002859   Thumb Code    16  bsp.o(i.WideTimer4A_Handler)
+    WideTimer5A_Handler                      0x00002871   Thumb Code    16  bsp.o(i.WideTimer5A_Handler)
+    __mathlib_flt_divzero                    0x00002889   Thumb Code    10  funder.o(i.__mathlib_flt_divzero)
+    __mathlib_flt_infnan                     0x00002893   Thumb Code     6  funder.o(i.__mathlib_flt_infnan)
+    __mathlib_flt_invalid                    0x00002899   Thumb Code     8  funder.o(i.__mathlib_flt_invalid)
+    call_FFT                                 0x000028ed   Thumb Code   204  user.o(i.call_FFT)
+    drawaxes                                 0x00002c45   Thumb Code    44  user.o(i.drawaxes)
+    imaginary_abs                            0x00002d39   Thumb Code    44  user.o(i.imaginary_abs)
+    log10f                                   0x00002d65   Thumb Code   384  log10f.o(i.log10f)
+    main                                     0x00002f19   Thumb Code    88  user.o(i.main)
+    rfft_fast_init_1024_f32                  0x00002f8d   Thumb Code    36  os.o(i.rfft_fast_init_1024_f32)
+    sqrt32                                   0x00003031   Thumb Code    30  user.o(i.sqrt32)
+    sqrtf                                    0x0000304f   Thumb Code    44  sqrtf.o(i.sqrtf)
+    __aeabi_fadd                             0x0000310d   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
+    _fadd                                    0x0000310d   Thumb Code   196  faddsub_clz.o(x$fpl$fadd)
+    __fpl_fcheck_NaN1                        0x000031d1   Thumb Code     6  fcheck1.o(x$fpl$fcheck1)
+    __aeabi_fcmpeq                           0x000031dd   Thumb Code     0  fcmp.o(x$fpl$fcmp)
+    _feq                                     0x000031dd   Thumb Code    14  fcmp.o(x$fpl$fcmp)
+    _fneq                                    0x000031eb   Thumb Code    14  fcmp.o(x$fpl$fcmp)
+    __aeabi_fcmpgt                           0x000031f9   Thumb Code     0  fcmp.o(x$fpl$fcmp)
+    _fgr                                     0x000031f9   Thumb Code    14  fcmp.o(x$fpl$fcmp)
+    __aeabi_fcmpge                           0x00003207   Thumb Code     0  fcmp.o(x$fpl$fcmp)
+    _fgeq                                    0x00003207   Thumb Code    14  fcmp.o(x$fpl$fcmp)
+    __aeabi_fcmple                           0x00003215   Thumb Code     0  fcmp.o(x$fpl$fcmp)
+    _fleq                                    0x00003215   Thumb Code    14  fcmp.o(x$fpl$fcmp)
+    __aeabi_fcmplt                           0x00003223   Thumb Code     0  fcmp.o(x$fpl$fcmp)
+    _fls                                     0x00003223   Thumb Code    14  fcmp.o(x$fpl$fcmp)
+    __fpl_fcmp_Inf                           0x00003231   Thumb Code    24  fcmpi.o(x$fpl$fcmpinf)
+    __aeabi_fdiv                             0x00003249   Thumb Code     0  fdiv.o(x$fpl$fdiv)
+    _fdiv                                    0x00003249   Thumb Code   384  fdiv.o(x$fpl$fdiv)
+    __aeabi_cfcmpeq                          0x000033cd   Thumb Code     0  feqf.o(x$fpl$feqf)
+    _fcmpeq                                  0x000033cd   Thumb Code   104  feqf.o(x$fpl$feqf)
+    __aeabi_f2uiz                            0x00003435   Thumb Code     0  ffixu.o(x$fpl$ffixu)
+    _ffixu                                   0x00003435   Thumb Code    62  ffixu.o(x$fpl$ffixu)
+    __aeabi_i2f                              0x00003475   Thumb Code     0  fflt_clz.o(x$fpl$fflt)
+    _fflt                                    0x00003475   Thumb Code    48  fflt_clz.o(x$fpl$fflt)
+    __aeabi_ui2f                             0x000034a5   Thumb Code     0  fflt_clz.o(x$fpl$ffltu)
+    _ffltu                                   0x000034a5   Thumb Code    38  fflt_clz.o(x$fpl$ffltu)
+    _fcmpge                                  0x000034cd   Thumb Code   104  fgeqf.o(x$fpl$fgeqf)
+    __aeabi_cfcmple                          0x00003535   Thumb Code     0  fleqf.o(x$fpl$fleqf)
+    _fcmple                                  0x00003535   Thumb Code   104  fleqf.o(x$fpl$fleqf)
+    __fpl_fcmple_InfNaN                      0x00003587   Thumb Code     0  fleqf.o(x$fpl$fleqf)
+    __aeabi_fmul                             0x0000359d   Thumb Code     0  fmul.o(x$fpl$fmul)
+    _fmul                                    0x0000359d   Thumb Code   258  fmul.o(x$fpl$fmul)
+    __fpl_fnaninf                            0x0000369f   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
+    __fpl_fretinf                            0x0000372b   Thumb Code    10  fretinf.o(x$fpl$fretinf)
+    _fsqrt                                   0x00003735   Thumb Code   272  fsqrt.o(x$fpl$fsqrt)
+    __aeabi_fsub                             0x00003845   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
+    _fsub                                    0x00003845   Thumb Code   234  faddsub_clz.o(x$fpl$fsub)
+    __fpl_return_NaN                         0x0000392f   Thumb Code   100  retnan.o(x$fpl$retnan)
+    __ARM_scalbnf                            0x00003993   Thumb Code    76  scalbnf.o(x$fpl$scalbnf)
+    __fpl_cmpreturn                          0x000039df   Thumb Code    48  trapv.o(x$fpl$trapveneer)
+    __I$use$fp                               0x00003a0e   Number         0  usenofp.o(x$fpl$usenofp)
+    armBitRevIndexTable512                   0x00003fcc   Data         896  arm_common_tables.o(.rodata.armBitRevIndexTable512)
+    twiddleCoef_512                          0x0000434c   Data        4096  arm_common_tables.o(.rodata.twiddleCoef_512)
+    twiddleCoef_rfft_1024                    0x0000534c   Data        4096  arm_common_tables.o(.rodata.twiddleCoef_rfft_1024)
+    Region$$Table$$Base                      0x0000634c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0000636c   Number         0  anon$$obj.o(Region$$Table)
     StX                                      0x20000008   Data           4  bsp.o(.data)
     StY                                      0x2000000c   Data           4  bsp.o(.data)
     StTextColor                              0x20000010   Data           2  bsp.o(.data)
@@ -1296,33 +1294,30 @@ Image Symbol Table
     EventThread                              0x20000058   Data           4  os.o(.data)
     wait                                     0x2000005c   Data           4  os.o(.data)
     Counter                                  0x20000060   Data           4  os.o(.data)
-    Count1                                   0x20000064   Data           4  user.o(.data)
-    Count2                                   0x20000068   Data           4  user.o(.data)
-    Count3                                   0x2000006c   Data           4  user.o(.data)
-    Time                                     0x20000070   Data           4  user.o(.data)
-    SoundData                                0x20000074   Data           2  user.o(.data)
-    dBAvg                                    0x20000078   Data           4  user.o(.data)
-    rawAvg                                   0x2000007c   Data           4  user.o(.data)
-    freqDb                                   0x20000080   Data           4  user.o(.data)
-    rawRMS                                   0x20000084   Data           4  user.o(.data)
-    avgFreq                                  0x20000088   Data           4  user.o(.data)
-    bin                                      0x2000008c   Data           4  user.o(.data)
-    NewData                                  0x20000090   Data           4  user.o(.data)
-    LCDmutex                                 0x20000094   Data           4  user.o(.data)
-    maxVal                                   0x20000098   Data           4  user.o(.data)
-    maxInd                                   0x2000009c   Data           4  user.o(.data)
-    timeTest                                 0x200000a0   Data           4  user.o(.data)
-    Message                                  0x200000b0   Data          12  bsp.o(.bss)
-    mag                                      0x200000bc   Data        2048  user.o(.bss)
-    dBArray                                  0x200008bc   Data        2048  user.o(.bss)
-    magnitudeArr                             0x200010bc   Data        2048  user.o(.bss)
-    SoundArray                               0x200018bc   Data        2048  user.o(.bss)
-    SoundBufferIn                            0x200020bc   Data        4096  user.o(.bss)
-    SoundBufferOut                           0x200030bc   Data        4096  user.o(.bss)
-    fft_inst                                 0x200040bc   Data          24  user.o(.bss)
-    h                                        0x200040d4   Data        2048  user.o(.bss)
-    __libspace_start                         0x200048d4   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x20004934   Data           0  libspace.o(.bss)
+    Time                                     0x20000064   Data           4  user.o(.data)
+    SoundData                                0x20000068   Data           2  user.o(.data)
+    dBAvg                                    0x2000006c   Data           4  user.o(.data)
+    rawAvg                                   0x20000070   Data           4  user.o(.data)
+    freqDb                                   0x20000074   Data           4  user.o(.data)
+    rawRMS                                   0x20000078   Data           4  user.o(.data)
+    avgFreq                                  0x2000007c   Data           4  user.o(.data)
+    bin                                      0x20000080   Data           4  user.o(.data)
+    NewData                                  0x20000084   Data           4  user.o(.data)
+    LCDmutex                                 0x20000088   Data           4  user.o(.data)
+    maxVal                                   0x2000008c   Data           4  user.o(.data)
+    maxInd                                   0x20000090   Data           4  user.o(.data)
+    timeTest                                 0x20000094   Data           4  user.o(.data)
+    Message                                  0x200000a4   Data          12  bsp.o(.bss)
+    mag                                      0x200000b0   Data        2048  user.o(.bss)
+    dBArray                                  0x200008b0   Data        2048  user.o(.bss)
+    magnitudeArr                             0x200010b0   Data        2048  user.o(.bss)
+    SoundArray                               0x200018b0   Data        2048  user.o(.bss)
+    SoundBufferIn                            0x200020b0   Data        4096  user.o(.bss)
+    SoundBufferOut                           0x200030b0   Data        4096  user.o(.bss)
+    fft_inst                                 0x200040b0   Data          24  user.o(.bss)
+    h                                        0x200040c8   Data        2048  user.o(.bss)
+    __libspace_start                         0x200048c8   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x20004928   Data           0  libspace.o(.bss)
 
 
 
@@ -1332,9 +1327,9 @@ Memory Map of the image
 
   Image Entry point : 0x00000359
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x000064f8, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00006410, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00006448, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000636c, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1414,113 +1409,111 @@ Memory Map of the image
     0x00001ae2   0x00001ae2   0x00000002   PAD
     0x00001ae4   0x00001ae4   0x0000011a   Code   RO          814    .text.stage_rfft_f32  arm_cortexM4l_math.lib(arm_rfft_fast_f32.o)
     0x00001bfe   0x00001bfe   0x00000002   PAD
-    0x00001c00   0x00001c00   0x000000d4   Code   RO            8    i.BSP_Buzzer_Init   bsp.o
-    0x00001cd4   0x00001cd4   0x0000008c   Code   RO           11    i.BSP_Clock_InitFastest  bsp.o
-    0x00001d60   0x00001d60   0x00000016   Code   RO           12    i.BSP_Delay1ms      bsp.o
-    0x00001d76   0x00001d76   0x00000018   Code   RO           15    i.BSP_LCD_Color565  bsp.o
-    0x00001d8e   0x00001d8e   0x00000002   PAD
-    0x00001d90   0x00001d90   0x00000110   Code   RO           17    i.BSP_LCD_DrawChar  bsp.o
-    0x00001ea0   0x00001ea0   0x0000007c   Code   RO           19    i.BSP_LCD_DrawFastHLine  bsp.o
-    0x00001f1c   0x00001f1c   0x0000007c   Code   RO           20    i.BSP_LCD_DrawFastVLine  bsp.o
-    0x00001f98   0x00001f98   0x00000048   Code   RO           21    i.BSP_LCD_DrawPixel  bsp.o
-    0x00001fe0   0x00001fe0   0x00000056   Code   RO           22    i.BSP_LCD_DrawString  bsp.o
-    0x00002036   0x00002036   0x00000002   PAD
-    0x00002038   0x00002038   0x00000124   Code   RO           23    i.BSP_LCD_Drawaxes  bsp.o
-    0x0000215c   0x0000215c   0x000000ac   Code   RO           24    i.BSP_LCD_FillRect  bsp.o
-    0x00002208   0x00002208   0x00000024   Code   RO           25    i.BSP_LCD_FillScreen  bsp.o
-    0x0000222c   0x0000222c   0x0000000a   Code   RO           26    i.BSP_LCD_Init      bsp.o
-    0x00002236   0x00002236   0x00000002   PAD
-    0x00002238   0x00002238   0x00000088   Code   RO           28    i.BSP_LCD_OutUDec4  bsp.o
-    0x000022c0   0x000022c0   0x00000038   Code   RO           32    i.BSP_LCD_PlotIncrement  bsp.o
-    0x000022f8   0x000022f8   0x00000064   Code   RO           33    i.BSP_LCD_PlotPoint  bsp.o
-    0x0000235c   0x0000235c   0x00000020   Code   RO           34    i.BSP_LCD_SetCursor  bsp.o
-    0x0000237c   0x0000237c   0x000000ac   Code   RO           40    i.BSP_Microphone_Init  bsp.o
-    0x00002428   0x00002428   0x0000002c   Code   RO           41    i.BSP_Microphone_Input  bsp.o
-    0x00002454   0x00002454   0x00000240   Code   RO           52    i.BSP_RGB_Init      bsp.o
-    0x00002694   0x00002694   0x00000018   Code   RO          504    i.OS_Init           os.o
-    0x000026ac   0x000026ac   0x00000074   Code   RO           63    i.ST7735_InitR      bsp.o
-    0x00002720   0x00002720   0x0000003c   Code   RO          512    i.Scheduler         os.o
-    0x0000275c   0x0000275c   0x000000d0   Code   RO          658    i.Task0             user.o
-    0x0000282c   0x0000282c   0x00000008   Code   RO          659    i.Task0_Init        user.o
-    0x00002834   0x00002834   0x00000050   Code   RO          660    i.Task1             user.o
-    0x00002884   0x00002884   0x00000030   Code   RO          661    i.Task2             user.o
-    0x000028b4   0x000028b4   0x00000060   Code   RO          662    i.Task3             user.o
-    0x00002914   0x00002914   0x00000018   Code   RO           64    i.WideTimer3A_Handler  bsp.o
-    0x0000292c   0x0000292c   0x00000018   Code   RO           65    i.WideTimer4A_Handler  bsp.o
-    0x00002944   0x00002944   0x00000018   Code   RO           66    i.WideTimer5A_Handler  bsp.o
-    0x0000295c   0x0000295c   0x0000000a   Code   RO         1059    i.__mathlib_flt_divzero  m_ws.l(funder.o)
-    0x00002966   0x00002966   0x00000006   Code   RO         1060    i.__mathlib_flt_infnan  m_ws.l(funder.o)
-    0x0000296c   0x0000296c   0x00000008   Code   RO         1062    i.__mathlib_flt_invalid  m_ws.l(funder.o)
-    0x00002974   0x00002974   0x0000004c   Code   RO           67    i.adcinit           bsp.o
-    0x000029c0   0x000029c0   0x000000fc   Code   RO          663    i.call_FFT          user.o
-    0x00002abc   0x00002abc   0x00000056   Code   RO           68    i.commandList       bsp.o
-    0x00002b12   0x00002b12   0x00000002   PAD
-    0x00002b14   0x00002b14   0x00000204   Code   RO           69    i.commonInit        bsp.o
-    0x00002d18   0x00002d18   0x00000048   Code   RO          664    i.drawaxes          user.o
-    0x00002d60   0x00002d60   0x00000048   Code   RO           70    i.fillmessage       bsp.o
-    0x00002da8   0x00002da8   0x00000064   Code   RO           73    i.fillmessage4      bsp.o
-    0x00002e0c   0x00002e0c   0x0000002c   Code   RO          665    i.imaginary_abs     user.o
-    0x00002e38   0x00002e38   0x000001b4   Code   RO         1024    i.log10f            m_ws.l(log10f.o)
-    0x00002fec   0x00002fec   0x00000068   Code   RO          666    i.main              user.o
-    0x00003054   0x00003054   0x00000012   Code   RO           78    i.pushColor         bsp.o
-    0x00003066   0x00003066   0x00000002   PAD
-    0x00003068   0x00003068   0x00000030   Code   RO          514    i.rfft_fast_init_1024_f32  os.o
-    0x00003098   0x00003098   0x00000074   Code   RO           79    i.setAddrWindow     bsp.o
-    0x0000310c   0x0000310c   0x0000001e   Code   RO          667    i.sqrt32            user.o
-    0x0000312a   0x0000312a   0x0000002c   Code   RO         1034    i.sqrtf             m_ws.l(sqrtf.o)
-    0x00003156   0x00003156   0x00000002   PAD
-    0x00003158   0x00003158   0x00000048   Code   RO           82    i.writecommand      bsp.o
-    0x000031a0   0x000031a0   0x00000048   Code   RO           83    i.writedata         bsp.o
-    0x000031e8   0x000031e8   0x000000c4   Code   RO          999    x$fpl$fadd          fz_ws.l(faddsub_clz.o)
-    0x000032ac   0x000032ac   0x0000000c   Code   RO         1093    x$fpl$fcheck1       fz_ws.l(fcheck1.o)
-    0x000032b8   0x000032b8   0x00000054   Code   RO         1005    x$fpl$fcmp          fz_ws.l(fcmp.o)
-    0x0000330c   0x0000330c   0x00000018   Code   RO         1095    x$fpl$fcmpinf       fz_ws.l(fcmpi.o)
-    0x00003324   0x00003324   0x00000184   Code   RO         1008    x$fpl$fdiv          fz_ws.l(fdiv.o)
-    0x000034a8   0x000034a8   0x00000068   Code   RO         1044    x$fpl$feqf          fz_ws.l(feqf.o)
-    0x00003510   0x00003510   0x0000003e   Code   RO         1011    x$fpl$ffixu         fz_ws.l(ffixu.o)
-    0x0000354e   0x0000354e   0x00000002   PAD
-    0x00003550   0x00003550   0x00000030   Code   RO         1016    x$fpl$fflt          fz_ws.l(fflt_clz.o)
-    0x00003580   0x00003580   0x00000026   Code   RO         1015    x$fpl$ffltu         fz_ws.l(fflt_clz.o)
-    0x000035a6   0x000035a6   0x00000002   PAD
-    0x000035a8   0x000035a8   0x00000068   Code   RO         1046    x$fpl$fgeqf         fz_ws.l(fgeqf.o)
-    0x00003610   0x00003610   0x00000068   Code   RO         1048    x$fpl$fleqf         fz_ws.l(fleqf.o)
-    0x00003678   0x00003678   0x00000102   Code   RO         1021    x$fpl$fmul          fz_ws.l(fmul.o)
-    0x0000377a   0x0000377a   0x0000008c   Code   RO         1050    x$fpl$fnaninf       fz_ws.l(fnaninf.o)
-    0x00003806   0x00003806   0x0000000a   Code   RO         1052    x$fpl$fretinf       fz_ws.l(fretinf.o)
-    0x00003810   0x00003810   0x00000110   Code   RO         1054    x$fpl$fsqrt         fz_ws.l(fsqrt.o)
-    0x00003920   0x00003920   0x000000ea   Code   RO         1001    x$fpl$fsub          fz_ws.l(faddsub_clz.o)
-    0x00003a0a   0x00003a0a   0x00000064   Code   RO         1110    x$fpl$retnan        fz_ws.l(retnan.o)
-    0x00003a6e   0x00003a6e   0x0000004c   Code   RO         1056    x$fpl$scalbnf       fz_ws.l(scalbnf.o)
-    0x00003aba   0x00003aba   0x00000030   Code   RO         1159    x$fpl$trapveneer    fz_ws.l(trapv.o)
-    0x00003aea   0x00003aea   0x00000000   Code   RO         1058    x$fpl$usenofp       fz_ws.l(usenofp.o)
-    0x00003aea   0x00003aea   0x0000057b   Data   RO           85    .constdata          bsp.o
-    0x00004065   0x00004065   0x00000003   PAD
-    0x00004068   0x00004068   0x00000040   Data   RO         1025    .constdata          m_ws.l(log10f.o)
-    0x000040a8   0x000040a8   0x00000380   Data   RO          888    .rodata.armBitRevIndexTable512  arm_cortexM4l_math.lib(arm_common_tables.o)
-    0x00004428   0x00004428   0x00001000   Data   RO          852    .rodata.twiddleCoef_512  arm_cortexM4l_math.lib(arm_common_tables.o)
-    0x00005428   0x00005428   0x00001000   Data   RO          914    .rodata.twiddleCoef_rfft_1024  arm_cortexM4l_math.lib(arm_common_tables.o)
-    0x00006428   0x00006428   0x00000020   Data   RO         1238    Region$$Table       anon$$obj.o
+    0x00001c00   0x00001c00   0x0000008c   Code   RO           11    i.BSP_Clock_InitFastest  bsp.o
+    0x00001c8c   0x00001c8c   0x00000016   Code   RO           12    i.BSP_Delay1ms      bsp.o
+    0x00001ca2   0x00001ca2   0x00000018   Code   RO           15    i.BSP_LCD_Color565  bsp.o
+    0x00001cba   0x00001cba   0x00000002   PAD
+    0x00001cbc   0x00001cbc   0x00000110   Code   RO           17    i.BSP_LCD_DrawChar  bsp.o
+    0x00001dcc   0x00001dcc   0x0000007c   Code   RO           19    i.BSP_LCD_DrawFastHLine  bsp.o
+    0x00001e48   0x00001e48   0x0000007c   Code   RO           20    i.BSP_LCD_DrawFastVLine  bsp.o
+    0x00001ec4   0x00001ec4   0x00000048   Code   RO           21    i.BSP_LCD_DrawPixel  bsp.o
+    0x00001f0c   0x00001f0c   0x00000056   Code   RO           22    i.BSP_LCD_DrawString  bsp.o
+    0x00001f62   0x00001f62   0x00000002   PAD
+    0x00001f64   0x00001f64   0x00000124   Code   RO           23    i.BSP_LCD_Drawaxes  bsp.o
+    0x00002088   0x00002088   0x000000ac   Code   RO           24    i.BSP_LCD_FillRect  bsp.o
+    0x00002134   0x00002134   0x00000024   Code   RO           25    i.BSP_LCD_FillScreen  bsp.o
+    0x00002158   0x00002158   0x0000000a   Code   RO           26    i.BSP_LCD_Init      bsp.o
+    0x00002162   0x00002162   0x00000002   PAD
+    0x00002164   0x00002164   0x00000088   Code   RO           28    i.BSP_LCD_OutUDec4  bsp.o
+    0x000021ec   0x000021ec   0x00000038   Code   RO           32    i.BSP_LCD_PlotIncrement  bsp.o
+    0x00002224   0x00002224   0x00000064   Code   RO           33    i.BSP_LCD_PlotPoint  bsp.o
+    0x00002288   0x00002288   0x00000020   Code   RO           34    i.BSP_LCD_SetCursor  bsp.o
+    0x000022a8   0x000022a8   0x000000ac   Code   RO           40    i.BSP_Microphone_Init  bsp.o
+    0x00002354   0x00002354   0x0000002c   Code   RO           41    i.BSP_Microphone_Input  bsp.o
+    0x00002380   0x00002380   0x00000240   Code   RO           52    i.BSP_RGB_Init      bsp.o
+    0x000025c0   0x000025c0   0x00000018   Code   RO          504    i.OS_Init           os.o
+    0x000025d8   0x000025d8   0x00000074   Code   RO           63    i.ST7735_InitR      bsp.o
+    0x0000264c   0x0000264c   0x0000003c   Code   RO          512    i.Scheduler         os.o
+    0x00002688   0x00002688   0x000000d0   Code   RO          658    i.Task0             user.o
+    0x00002758   0x00002758   0x00000008   Code   RO          659    i.Task0_Init        user.o
+    0x00002760   0x00002760   0x00000050   Code   RO          660    i.Task1             user.o
+    0x000027b0   0x000027b0   0x00000030   Code   RO          661    i.Task2             user.o
+    0x000027e0   0x000027e0   0x00000060   Code   RO          662    i.Task3             user.o
+    0x00002840   0x00002840   0x00000018   Code   RO           64    i.WideTimer3A_Handler  bsp.o
+    0x00002858   0x00002858   0x00000018   Code   RO           65    i.WideTimer4A_Handler  bsp.o
+    0x00002870   0x00002870   0x00000018   Code   RO           66    i.WideTimer5A_Handler  bsp.o
+    0x00002888   0x00002888   0x0000000a   Code   RO         1059    i.__mathlib_flt_divzero  m_ws.l(funder.o)
+    0x00002892   0x00002892   0x00000006   Code   RO         1060    i.__mathlib_flt_infnan  m_ws.l(funder.o)
+    0x00002898   0x00002898   0x00000008   Code   RO         1062    i.__mathlib_flt_invalid  m_ws.l(funder.o)
+    0x000028a0   0x000028a0   0x0000004c   Code   RO           67    i.adcinit           bsp.o
+    0x000028ec   0x000028ec   0x000000fc   Code   RO          663    i.call_FFT          user.o
+    0x000029e8   0x000029e8   0x00000056   Code   RO           68    i.commandList       bsp.o
+    0x00002a3e   0x00002a3e   0x00000002   PAD
+    0x00002a40   0x00002a40   0x00000204   Code   RO           69    i.commonInit        bsp.o
+    0x00002c44   0x00002c44   0x00000048   Code   RO          664    i.drawaxes          user.o
+    0x00002c8c   0x00002c8c   0x00000048   Code   RO           70    i.fillmessage       bsp.o
+    0x00002cd4   0x00002cd4   0x00000064   Code   RO           73    i.fillmessage4      bsp.o
+    0x00002d38   0x00002d38   0x0000002c   Code   RO          665    i.imaginary_abs     user.o
+    0x00002d64   0x00002d64   0x000001b4   Code   RO         1024    i.log10f            m_ws.l(log10f.o)
+    0x00002f18   0x00002f18   0x00000060   Code   RO          666    i.main              user.o
+    0x00002f78   0x00002f78   0x00000012   Code   RO           78    i.pushColor         bsp.o
+    0x00002f8a   0x00002f8a   0x00000002   PAD
+    0x00002f8c   0x00002f8c   0x00000030   Code   RO          514    i.rfft_fast_init_1024_f32  os.o
+    0x00002fbc   0x00002fbc   0x00000074   Code   RO           79    i.setAddrWindow     bsp.o
+    0x00003030   0x00003030   0x0000001e   Code   RO          667    i.sqrt32            user.o
+    0x0000304e   0x0000304e   0x0000002c   Code   RO         1034    i.sqrtf             m_ws.l(sqrtf.o)
+    0x0000307a   0x0000307a   0x00000002   PAD
+    0x0000307c   0x0000307c   0x00000048   Code   RO           82    i.writecommand      bsp.o
+    0x000030c4   0x000030c4   0x00000048   Code   RO           83    i.writedata         bsp.o
+    0x0000310c   0x0000310c   0x000000c4   Code   RO          999    x$fpl$fadd          fz_ws.l(faddsub_clz.o)
+    0x000031d0   0x000031d0   0x0000000c   Code   RO         1093    x$fpl$fcheck1       fz_ws.l(fcheck1.o)
+    0x000031dc   0x000031dc   0x00000054   Code   RO         1005    x$fpl$fcmp          fz_ws.l(fcmp.o)
+    0x00003230   0x00003230   0x00000018   Code   RO         1095    x$fpl$fcmpinf       fz_ws.l(fcmpi.o)
+    0x00003248   0x00003248   0x00000184   Code   RO         1008    x$fpl$fdiv          fz_ws.l(fdiv.o)
+    0x000033cc   0x000033cc   0x00000068   Code   RO         1044    x$fpl$feqf          fz_ws.l(feqf.o)
+    0x00003434   0x00003434   0x0000003e   Code   RO         1011    x$fpl$ffixu         fz_ws.l(ffixu.o)
+    0x00003472   0x00003472   0x00000002   PAD
+    0x00003474   0x00003474   0x00000030   Code   RO         1016    x$fpl$fflt          fz_ws.l(fflt_clz.o)
+    0x000034a4   0x000034a4   0x00000026   Code   RO         1015    x$fpl$ffltu         fz_ws.l(fflt_clz.o)
+    0x000034ca   0x000034ca   0x00000002   PAD
+    0x000034cc   0x000034cc   0x00000068   Code   RO         1046    x$fpl$fgeqf         fz_ws.l(fgeqf.o)
+    0x00003534   0x00003534   0x00000068   Code   RO         1048    x$fpl$fleqf         fz_ws.l(fleqf.o)
+    0x0000359c   0x0000359c   0x00000102   Code   RO         1021    x$fpl$fmul          fz_ws.l(fmul.o)
+    0x0000369e   0x0000369e   0x0000008c   Code   RO         1050    x$fpl$fnaninf       fz_ws.l(fnaninf.o)
+    0x0000372a   0x0000372a   0x0000000a   Code   RO         1052    x$fpl$fretinf       fz_ws.l(fretinf.o)
+    0x00003734   0x00003734   0x00000110   Code   RO         1054    x$fpl$fsqrt         fz_ws.l(fsqrt.o)
+    0x00003844   0x00003844   0x000000ea   Code   RO         1001    x$fpl$fsub          fz_ws.l(faddsub_clz.o)
+    0x0000392e   0x0000392e   0x00000064   Code   RO         1110    x$fpl$retnan        fz_ws.l(retnan.o)
+    0x00003992   0x00003992   0x0000004c   Code   RO         1056    x$fpl$scalbnf       fz_ws.l(scalbnf.o)
+    0x000039de   0x000039de   0x00000030   Code   RO         1159    x$fpl$trapveneer    fz_ws.l(trapv.o)
+    0x00003a0e   0x00003a0e   0x00000000   Code   RO         1058    x$fpl$usenofp       fz_ws.l(usenofp.o)
+    0x00003a0e   0x00003a0e   0x0000057b   Data   RO           85    .constdata          bsp.o
+    0x00003f89   0x00003f89   0x00000003   PAD
+    0x00003f8c   0x00003f8c   0x00000040   Data   RO         1025    .constdata          m_ws.l(log10f.o)
+    0x00003fcc   0x00003fcc   0x00000380   Data   RO          888    .rodata.armBitRevIndexTable512  arm_cortexM4l_math.lib(arm_common_tables.o)
+    0x0000434c   0x0000434c   0x00001000   Data   RO          852    .rodata.twiddleCoef_512  arm_cortexM4l_math.lib(arm_common_tables.o)
+    0x0000534c   0x0000534c   0x00001000   Data   RO          914    .rodata.twiddleCoef_rfft_1024  arm_cortexM4l_math.lib(arm_common_tables.o)
+    0x0000634c   0x0000634c   0x00000020   Data   RO         1238    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00006448, Size: 0x000000b0, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x20000000   0x00006448   0x00000044   Data   RW           86    .data               bsp.o
-    0x20000044   0x0000648c   0x00000020   Data   RW          516    .data               os.o
-    0x20000064   0x000064ac   0x0000004c   Data   RW          669    .data               user.o
-
-
-    Execution Region ER_ZI (Exec base: 0x200000b0, Load base: 0x000064f8, Size: 0x00004a88, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x0000636c, Size: 0x000000a4, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x200000b0        -       0x0000000c   Zero   RW           84    .bss                bsp.o
-    0x200000bc        -       0x00004818   Zero   RW          668    .bss                user.o
-    0x200048d4        -       0x00000060   Zero   RW         1098    .bss                c_w.l(libspace.o)
-    0x20004934   0x000064f8   0x00000004   PAD
-    0x20004938        -       0x00000000   Zero   RW          750    HEAP                startup_tm4c123.o
-    0x20004938        -       0x00000200   Zero   RW          749    STACK               startup_tm4c123.o
+    0x20000000   0x0000636c   0x00000044   Data   RW           86    .data               bsp.o
+    0x20000044   0x000063b0   0x00000020   Data   RW          516    .data               os.o
+    0x20000064   0x000063d0   0x00000040   Data   RW          669    .data               user.o
+
+
+    Execution Region ER_ZI (Exec base: 0x200000a4, Load base: 0x00006410, Size: 0x00004a84, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x200000a4        -       0x0000000c   Zero   RW           84    .bss                bsp.o
+    0x200000b0        -       0x00004818   Zero   RW          668    .bss                user.o
+    0x200048c8        -       0x00000060   Zero   RW         1098    .bss                c_w.l(libspace.o)
+    0x20004928        -       0x00000000   Zero   RW          750    HEAP                startup_tm4c123.o
+    0x20004928        -       0x00000200   Zero   RW          749    STACK               startup_tm4c123.o
 
 
 ==============================================================================
@@ -1530,14 +1523,14 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      4024        428       1403         68         12      26261   bsp.o
-       132         34          0         32          0      18776   os.o
+      3812        400       1403         68         12      25763   bsp.o
+       132         34          0         32          0      18772   os.o
         72          4          0          0          0        224   osasm.o
        292         18        620          0        512       5656   startup_tm4c123.o
-       942        160          0         76      18456       6376   user.o
+       934        158          0         64      18456       6279   user.o
 
     ----------------------------------------------------------------------
-      5474        644       2058        176      18980      57293   Object Totals
+      5254        614       2058        164      18980      56694   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         12          0          3          0          0          0   (incl. Padding)
 
@@ -1596,8 +1589,8 @@ Image component sizes
         44          0          0          0          0         80   sqrtf.o
 
     ----------------------------------------------------------------------
-      8988        284       9152          0        100      23590   Library Totals
-        22          0          0          0          4          0   (incl. Padding)
+      8988        284       9152          0         96      23590   Library Totals
+        22          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1609,7 +1602,7 @@ Image component sizes
        504         52         64          0          0        416   m_ws.l
 
     ----------------------------------------------------------------------
-      8988        284       9152          0        100      23590   Library Totals
+      8988        284       9152          0         96      23590   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -1618,15 +1611,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     14462        928      11210        176      19080      77019   Grand Totals
-     14462        928      11210        176      19080      77019   ELF Image Totals
-     14462        928      11210        176          0          0   ROM Totals
+     14242        898      11210        164      19076      76472   Grand Totals
+     14242        898      11210        164      19076      76472   ELF Image Totals
+     14242        898      11210        164          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                25672 (  25.07kB)
-    Total RW  Size (RW Data + ZI Data)             19256 (  18.80kB)
-    Total ROM Size (Code + RO Data + RW Data)      25848 (  25.24kB)
+    Total RO  Size (Code + RO Data)                25452 (  24.86kB)
+    Total RW  Size (RW Data + ZI Data)             19240 (  18.79kB)
+    Total ROM Size (Code + RO Data + RW Data)      25616 (  25.02kB)
 
 ==============================================================================
 

@@ -1,33 +1,28 @@
+//*****************************************************************************
 // os.h
-// Runs on LM4F120/TM4C123/MSP432
-// A very simple real time operating system with minimal features.
-// Daniel Valvano
-// February 8, 2016
+// Runs on TM4C123 with BOOSTXL-EDUMKII booster pack
+// A program to process captured sound samples and print magnitude, root mean square,
+// and sound frequency on a LCD Display.
 
-/* This example accompanies the book
-   "Embedded Systems: Real Time Interfacing to ARM Cortex M Microcontrollers",
-   ISBN: 978-1463590154, Jonathan Valvano, copyright (c) 2016
+// May, 3, 2021
+// Daniel King, Lujayna Taha, Thaddeus Phipps
 
-   "Embedded Systems: Real-Time Operating Systems for ARM Cortex-M Microcontrollers",
-   ISBN: 978-1466468863, , Jonathan Valvano, copyright (c) 2016
-   Programs 4.4 through 4.12, section 4.2
-
- Copyright 2016 by Jonathan W. Valvano, valvano@mail.utexas.edu
-    You may use, edit, run or distribute this file
-    as long as the above copyright notice remains
- THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
- OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
- MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
- VALVANO SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
- OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
- For more information about my classes, my research, and my books, see
- http://users.ece.utexas.edu/~valvano/
- */
+// Project was built on RTOS_4C123 template written and copyrighted by Daniel Valvano, February 2016
+// Copyright 2016 by Jonathan W. Valvano, valvano@mail.utexas.edu
+// This program does currently make use of Valvano's BSP.C and other assembly configurations.
+// RTOS functions and mechanism from template currently not used in this program.
 
 #include "arm_math.h"
 #ifndef __OS_H
 #define __OS_H  1
 
+
+//******** FFT ********\\
+// initialize transform function with only one fiddle factor table
+arm_status rfft_fast_init_1024_f32(arm_rfft_fast_instance_f32 * S);
+
+//******** OS FUNCTIONS ********\\
+// currently not used in code
 
 // ******** OS_Init ************
 // initialize operating system, disable interrupts until OS_Launch
@@ -109,9 +104,6 @@ void OS_MailBox_Send(uint32_t data);
 // Outputs: data retreived
 // Errors:  none
 uint32_t OS_MailBox_Recv(void);
-
-////// fft
-arm_status rfft_fast_init_1024_f32(arm_rfft_fast_instance_f32 * S);
 								 
 
 

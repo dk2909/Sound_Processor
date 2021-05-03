@@ -1,33 +1,17 @@
 //*****************************************************************************
 // user.c
-// Runs on LM4F120/TM4C123/MSP432
-// An example user program that initializes the simple operating system
-//   Schedule three independent threads using preemptive round robin
-//   Each thread rapidly toggles a pin on profile pins and increments its counter
-//   THREADFREQ is the rate of the scheduler in Hz
+// Runs on TM4C123 with BOOSTXL-EDUMKII booster pack
+// A program to process captured sound samples and print magnitude, root mean square,
+// and sound frequency on a LCD Display.
 
-// Daniel Valvano
-// February 8, 2016
+// May, 3, 2021
+// Daniel King, Lujayna Taha, Thaddeus Phipps
 
-/* This example accompanies the book
-   "Embedded Systems: Real Time Interfacing to ARM Cortex M Microcontrollers",
-   ISBN: 978-1463590154, Jonathan Valvano, copyright (c) 2016
+// Project was built on RTOS_4C123 template written and copyrighted by Daniel Valvano, February 2016
+// Copyright 2016 by Jonathan W. Valvano, valvano@mail.utexas.edu
+// This program does currently make use of Valvano's BSP.C and other assembly configurations.
+// RTOS functions and mechanism from template currently not used in this program.
 
-   "Embedded Systems: Real-Time Operating Systems for ARM Cortex-M Microcontrollers",
-   ISBN: 978-1466468863, , Jonathan Valvano, copyright (c) 2016
-   Programs 4.4 through 4.12, section 4.2
-
- Copyright 2016 by Jonathan W. Valvano, valvano@mail.utexas.edu
-    You may use, edit, run or distribute this file
-    as long as the above copyright notice remains
- THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
- OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
- MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
- VALVANO SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
- OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
- For more information about my classes, my research, and my books, see
- http://users.ece.utexas.edu/~valvano/
- */
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -36,18 +20,14 @@
 #include "../inc/profile.h"
 #include "arm_math.h"
 
+//******** GLOBAL VARIABLES AND VALUES ********\\
+
 #define THREADFREQ 500   // frequency in Hz
 #define MAGNUM 512   // number of magnitude values
 #define PLOTMAX 80
 #define PLOTMIN 0
 #define SAMPLELENGTH 1024 // number of samples to collect before calculating RMS (may overflow if greater than 4104)
 #define FILTERSIZE 512
-
-// runs each thread 2 ms
-//uint32_t Count0;   // number of times Task0 loops
-uint32_t Count1;   // number of times Task1 loops
-uint32_t Count2;   // number of times Task2 loops
-uint32_t Count3;   // number of times Task2 loops
 
 //---------------- Global variables shared between tasks ----------------
 uint32_t Time;              // elasped time in ?100? ms units
@@ -64,7 +44,6 @@ int32_t freqDb;
 uint32_t rawRMS;
 uint32_t avgFreq;
 uint32_t bin;
-//int ReDrawAxes = 0;         // non-zero means redraw axes on next display task
 int32_t NewData;  // true when new numbers to display on top of LCD
 int32_t LCDmutex ; // exclusive access to LCD
 //// testing rfft function
@@ -85,7 +64,8 @@ int timeTest;
 #define TOPTXTCOLOR LCD_WHITE
 #define VALUECOLOR	LCD_RED
 
-//// Utility Functions
+//******** UTILITY FUNCTIONS ********\\
+
 void drawaxes(void){
 	uint32_t max = PLOTMAX;
 	uint32_t min = PLOTMIN;
@@ -97,9 +77,11 @@ float32_t imaginary_abs(float32_t real, float32_t imag) {
 	return sqrtf(real*real+imag*imag);
 }
 
+
 // Newton's method
 // s is an integer
 // sqrt(s) is an integer
+// taken from previous ECE 5436 lab
 uint32_t sqrt32(uint32_t s){
 uint32_t t;   // t*t will become s
 int n;             // loop counter
@@ -110,6 +92,9 @@ int n;             // loop counter
   return t;
 }
 
+//******** PROCESSING FUNCTIONS ********\\
+
+// Calls FFT function, calculates magnitude and sound frequency
 void call_FFT(void){
 	static int32_t dBsum = 0;	
 	// call function to process fft
@@ -119,7 +104,6 @@ void call_FFT(void){
 	for(int i = 2; i < SAMPLELENGTH; i+=2){
 		// convert from time to frequency domain
 		dBArray[counter] = (uint32_t)(20*log10f(imaginary_abs(SoundBufferOut[i], SoundBufferOut[i+1])));
-		//magnitudeArr[counter] = imaginary_abs(SoundBufferOut[i], SoundBufferOut[i+1]);
 		magnitudeArr[counter] = (20*log10f(imaginary_abs(SoundBufferOut[i], SoundBufferOut[i+1])));
 		
 		// save real numbers in array
@@ -211,21 +195,20 @@ void Task3(void){
 	BSP_LCD_SetCursor(15, 1); BSP_LCD_OutUDec4(bin,VALUECOLOR);
 }
 
+//******** MAIN FUNCTION ********\\
 
 int main(void){
   OS_Init();            // initialize, disable interrupts
 	Task0_Init();    // microphone init
-	//arm_rfft_fast_init_f32(&fft_inst,1024);
-	rfft_fast_init_1024_f32(&fft_inst);
+	//arm_rfft_fast_init_f32(&fft_inst,1024); // bug in library function
+	rfft_fast_init_1024_f32(&fft_inst); // initialize FFT table with sample length of 1024
 	BSP_RGB_Init(0, 0, 0);
-	BSP_Buzzer_Init(0);
 	BSP_LCD_Init();
   BSP_LCD_FillScreen(BSP_LCD_Color565(0, 0, 0));
 	Time = 0;
-	//for(int i = 0; i < 100; i++){
 	while(1){
 		// take sample
-		for(int i = 0; i < 44100; i++){
+		for(int i = 0; i < 44100; i++){ // sampling at 44.1 kHz
 			Task0();
 		}
 		call_FFT();

@@ -1,28 +1,16 @@
+//*****************************************************************************
 // os.c
-// Runs on LM4F120/TM4C123/MSP432
-// A very simple real time operating system with minimal features.
-// Daniel Valvano
-// February 8, 2016
+// Runs on TM4C123 with BOOSTXL-EDUMKII booster pack
+// A program to process captured sound samples and print magnitude, root mean square,
+// and sound frequency on a LCD Display.
 
-/* This example accompanies the book
-   "Embedded Systems: Real Time Interfacing to ARM Cortex M Microcontrollers",
-   ISBN: 978-1463590154, Jonathan Valvano, copyright (c) 2016
+// May, 3, 2021
+// Daniel King, Lujayna Taha, Thaddeus Phipps
 
-   "Embedded Systems: Real-Time Operating Systems for ARM Cortex-M Microcontrollers",
-   ISBN: 978-1466468863, , Jonathan Valvano, copyright (c) 2016
-   Programs 4.4 through 4.12, section 4.2
-
- Copyright 2016 by Jonathan W. Valvano, valvano@mail.utexas.edu
-    You may use, edit, run or distribute this file
-    as long as the above copyright notice remains
- THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
- OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
- MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
- VALVANO SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
- OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
- For more information about my classes, my research, and my books, see
- http://users.ece.utexas.edu/~valvano/
- */
+// Project was built on RTOS_4C123 template written and copyrighted by Daniel Valvano, February 2016
+// Copyright 2016 by Jonathan W. Valvano, valvano@mail.utexas.edu
+// This program does currently make use of Valvano's BSP.C and other assembly configurations.
+// RTOS functions and mechanism from template currently not used in this program.
 
 #include <stdint.h>
 #include "os.h"
@@ -30,6 +18,27 @@
 #include "BSP.h"
 #include "arm_math.h"
 #include "arm_common_tables.h"
+
+
+//******** FFT ********\\
+// initialize transform function with only one fiddle factor table
+
+arm_status rfft_fast_init_1024_f32(arm_rfft_fast_instance_f32 * S){
+  arm_cfft_instance_f32 * Sint;
+	Sint = &(S->Sint);
+	Sint->fftLen = 512u;
+	S->fftLenRFFT = Sint->fftLen;
+	Sint->bitRevLength = ARMBITREVINDEXTABLE_512_TABLE_LENGTH;
+	Sint->pBitRevTable = (uint16_t*)armBitRevIndexTable512;
+	Sint->pTwiddle = (float32_t*)twiddleCoef_512;
+	S->pTwiddleRFFT = (float32_t*)twiddleCoef_rfft_1024;
+	
+  return ARM_MATH_SUCCESS;
+}
+
+
+//******** OS FUNCTIONS ********\\
+// currently not used in code
 
 // function definitions in osasm.s
 void StartOS(void);
@@ -198,68 +207,7 @@ uint32_t OS_MailBox_Recv(void){
   return data;
 }
 
-//******** FFT ********\\
-// initialize transform function with only one fiddle factor table
-
-arm_status rfft_fast_init_1024_f32(arm_rfft_fast_instance_f32 * S){
-  arm_cfft_instance_f32 * Sint;
-	Sint = &(S->Sint);
-	Sint->fftLen = 512u;
-	S->fftLenRFFT = Sint->fftLen;
-	Sint->bitRevLength = ARMBITREVINDEXTABLE_512_TABLE_LENGTH;
-	Sint->pBitRevTable = (uint16_t*)armBitRevIndexTable512;
-	Sint->pTwiddle = (float32_t*)twiddleCoef_512;
-	S->pTwiddleRFFT = (float32_t*)twiddleCoef_rfft_1024;
-	
-  return ARM_MATH_SUCCESS;
-}
 
 
-/*
-#define PF2   (*((volatile uint32_t *)0x40025010))
-#define Debug_Set()   (PF2 = 0x04)
-#define Debug_Clear() (PF2 = 0x00)
 
 
-typedef struct{
-  int16_t real,imag;
-}Complex_t;
-// data for FFT
-Complex_t x[1024],y[1024];
-int32_t mag[512];
-uint32_t before,elapsed,elapsed64,elapsed256;
-
-void cr4_fft_1024_stm32(Complex_t *pssOUT, Complex_t *pssIN, unsigned short Nbin);
-void cr4_fft_256_stm32(Complex_t *pssOUT, Complex_t *pssIN, unsigned short Nbin);
-void cr4_fft_64_stm32(Complex_t *pssOUT, Complex_t *pssIN, unsigned short Nbin);
-
-void test_fft(int16_t sinewave[], int t){
-	int32_t k, real, imag;
-	for(t=0; t<1024; t=t+1){   // t means 1/fs
-    x[t].imag = 0;           // imaginary part is zero
-    x[t].real = sinewave[t]; // fill real part with data
-  }
-  before = NVIC_ST_CURRENT_R;
-  cr4_fft_1024_stm32(y, x, 1024);   // complex FFT of 1024 values
-	
-  elapsed = (before - NVIC_ST_CURRENT_R - 6)&0x00FFFFFF; 
-  // the number 6 depends on the instructions before and after test
-  // if you remove the call to FFT, elapsed measures 0
-
-  while(1){
-    for(t=0; t<1024; t=t+1){   // simulated ADC samples
-      x[t].imag = 0;           // imaginary part is zero
-      x[t].real = sinewave[t]; // fill real part with data
-    }
-    Debug_Set();                    // PF2=1
-   // cr4_fft_1024_stm32(y, x, 1024); // complex FFT of last 1024 ADC values
-    Debug_Clear();                  // PF2=0
-    for(k=0; k<512; k=k+1){         // k means fs/1024
-      real = y[k].real;             // bottom 16 bits
-      imag = y[k].imag;             // top 16 bits
-      mag[k] = sqrt(real*real+imag*imag);
-    }
-  }
-	// return mag[k] array
-}
-*/
