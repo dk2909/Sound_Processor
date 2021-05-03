@@ -157,7 +157,7 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>maxInd</ItemText>
+          <ItemText>maxInd,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
@@ -167,12 +167,12 @@
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>SoundArray</ItemText>
+          <ItemText>binFreq</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>counter</ItemText>
+          <ItemText>avgFreg</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

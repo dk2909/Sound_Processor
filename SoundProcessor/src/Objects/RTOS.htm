@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\RTOS.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\RTOS.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun May 02 18:26:59 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun May 02 20:29:28 2021
 <BR><P>
-<H3>Maximum Stack Usage =        552 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        560 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; call_FFT &rArr; arm_rfft_fast_f32 &rArr; arm_cfft_f32 &rArr; arm_cfft_radix8by4_f32 &rArr; arm_radix8_butterfly_f32 &rArr; __aeabi_fmul
 <P>
@@ -379,7 +379,7 @@ Global Symbols
 <P><STRONG><a name="[10f]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[8a]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 552 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 560 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; call_FFT &rArr; arm_rfft_fast_f32 &rArr; arm_cfft_f32 &rArr; arm_cfft_radix8by4_f32 &rArr; arm_radix8_butterfly_f32 &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -1561,7 +1561,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
-<P><STRONG><a name="[c1]"></a>Task0</STRONG> (Thumb, 196 bytes, Stack size 16 bytes, user.o(i.Task0))
+<P><STRONG><a name="[c1]"></a>Task0</STRONG> (Thumb, 180 bytes, Stack size 16 bytes, user.o(i.Task0))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Task0
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
@@ -1579,7 +1579,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c5]"></a>Task1</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, user.o(i.Task1))
+<P><STRONG><a name="[c5]"></a>Task1</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, user.o(i.Task1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = Task1 &rArr; BSP_LCD_DrawString &rArr; BSP_LCD_DrawChar &rArr; setAddrWindow
 </UL>
 <BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_DrawString
@@ -1597,7 +1597,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c8]"></a>Task3</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, user.o(i.Task3))
+<P><STRONG><a name="[c8]"></a>Task3</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, user.o(i.Task3))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = Task3 &rArr; BSP_LCD_OutUDec4 &rArr; BSP_LCD_DrawString &rArr; BSP_LCD_DrawChar &rArr; setAddrWindow
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_SetCursor
@@ -1643,8 +1643,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;log10f
 </UL>
 
-<P><STRONG><a name="[cd]"></a>call_FFT</STRONG> (Thumb, 168 bytes, Stack size 24 bytes, user.o(i.call_FFT))
-<BR><BR>[Stack]<UL><LI>Max Depth = 552<LI>Call Chain = call_FFT &rArr; arm_rfft_fast_f32 &rArr; arm_cfft_f32 &rArr; arm_cfft_radix8by4_f32 &rArr; arm_radix8_butterfly_f32 &rArr; __aeabi_fmul
+<P><STRONG><a name="[cd]"></a>call_FFT</STRONG> (Thumb, 204 bytes, Stack size 32 bytes, user.o(i.call_FFT))
+<BR><BR>[Stack]<UL><LI>Max Depth = 560<LI>Call Chain = call_FFT &rArr; arm_rfft_fast_f32 &rArr; arm_cfft_f32 &rArr; arm_cfft_radix8by4_f32 &rArr; arm_radix8_butterfly_f32 &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;log10f
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
@@ -1656,7 +1656,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c7]"></a>drawaxes</STRONG> (Thumb, 42 bytes, Stack size 32 bytes, user.o(i.drawaxes))
+<P><STRONG><a name="[c7]"></a>drawaxes</STRONG> (Thumb, 44 bytes, Stack size 32 bytes, user.o(i.drawaxes))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = drawaxes &rArr; BSP_LCD_Drawaxes &rArr; BSP_LCD_DrawChar &rArr; setAddrWindow
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_Drawaxes
@@ -1692,7 +1692,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[8b]"></a>main</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, user.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 552 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 560 + Unknown Stack Size
 <LI>Call Chain = main &rArr; call_FFT &rArr; arm_rfft_fast_f32 &rArr; arm_cfft_f32 &rArr; arm_cfft_radix8by4_f32 &rArr; arm_radix8_butterfly_f32 &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;call_FFT
